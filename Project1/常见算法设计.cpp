@@ -48,7 +48,7 @@ void TemperatureConversion()
 void CaseConversion()
 {
     string str;
-    cout << "Enter a string: ";
+    cout << "请输入一个字符串：\n";
     cin >> str;
 
     for (char& c : str) {
@@ -59,8 +59,7 @@ void CaseConversion()
             c = toupper(c);
         }
     }
-
-    cout << "Modified string: " << str << std::endl;
+    cout << "转换后的字符串为：\n" << str << endl;
 }
 
 //判别闰年
@@ -95,8 +94,69 @@ void JudgeLeapYears()
 }
 
 //百分制成绩与五分制成绩互相转换
+void GradeConversion()
+{
+    bool flag = false;
+    float old_grade;
+    //int new_grade;
+    string new_grade;
+    while (flag!=true) {
+        flag = true;
+        cout << "请输入百分制成绩：\n";
+        try {
+            cin >> old_grade;
+        }
+        catch(...) {
+            flag = false;
+        }
+        if (flag == false || old_grade < 0 || old_grade>100) {
+            cout << "输入有误，请重新输入！\n";
+            flag = false;
+        }
+    }
+    switch ((int)old_grade / 10) {
+    case 10:
+        new_grade.assign("优");
+        break;
+    case 9:
+        new_grade.assign("优");
+        break;
+    case 8:
+        new_grade.assign("良");
+        break;
+    case 7:
+        new_grade.assign("中");
+        break;
+    case 6:
+        new_grade.assign("及格");
+        break;
+    default:
+        new_grade.assign("不及格");
+    }
+    cout << old_grade << "分对应的五分制成绩为：" << new_grade << endl;
+}
 
 //求两个数的最大公因数和最小公倍数
+int gcd(int a, int b) {  // 辗转相除法求最大公因子
+    if (b == 0) {
+        return a;
+    }
+    return gcd(b, a % b);
+}
+
+int lcm(int a, int b) {
+    return (a * b) / gcd(a, b);
+}
+
+void MinMultiple()
+{
+    int a, b;
+    cout << "请输入两个正整数： \n";
+    cin >> a >> b;
+
+    cout << a << " 和 " << b << " 的最大公约数为： " << gcd(a, b) << endl;
+    cout << a << " 和 " << b << " 的最小公倍数为： " << lcm(a, b) << endl;
+}
 
 //求素数、水仙花数、完全平方数
 void FindNumber()
@@ -183,8 +243,110 @@ void FindNumber()
 }
 
 //统计输入字符中的类别
+void CharacterStatistics()
+{
+    char str[N];
+    int i = 0;
+    int len = 0, capital = 0, smallletter = 0, digit = 0, others = 0;
+    cout << "请输入一串不大于50个字符的字符串：\n";
+    cin.getline(str, N);
+    while (str[i] != '\0') {
+        len++;
+        if (str[i] <= 'Z' && str[i] >= 'A')
+            capital++;
+        else if (str[i] <= 'z' && str[i] >= 'a')
+            smallletter++;
+        else if (str[i] <= '9' && str[i] >= '0')
+            digit++;
+        else
+            others++;
+        i++;
+    }
+    cout << "字符串总长度为：" << len << endl
+        << "大写字母个数为：" << capital << endl
+        << "小写字母个数为：" << smallletter << endl
+        << "数 字 个 数 为：" << digit << endl
+        << "其他字符个数为：" << others << endl;
+
+}
 
 //求两个矩阵之和、之积
+
+void MatrixMultiplication()  // 乘法实现
+{
+    bool flag = false;
+    const int M = 20, L = 20, K = 20;
+    double A[M][L], B[L][K], C[M][K];
+    int m1, n1, m2, n2;
+    while (flag != true) {
+        flag = true;
+        cout << "请输入第一个矩阵的维数（行、列）" << endl;
+        cin >> m1 >> n1;
+
+        cout << "请输入第二个矩阵的维数（行、列）" << endl;
+        cin >> m2 >> n2;
+
+        if (n1 != m2) {
+            flag = false;
+            cout << "第一个矩阵的列数应当等于第二个矩阵的行数，请重新输入！\n";
+        }
+    }
+    cout << "请按行优先输入第一个矩阵的元素" << endl;
+    for (int i = 0; i < m1; i++)
+        for (int j = 0; j < n1; j++)
+            cin >> A[i][j];
+    cout << "请按行优先输入第二个矩阵的元素" << endl;
+    for (int i = 0; i < m2; i++)
+        for (int j = 0; j < n2; j++)
+            cin >> B[i][j];
+
+    for (int i = 0; i < m1; i++) {  // 最终矩阵m1行的每一行
+        for (int j = 0; j < n2; j++) {  // 最终矩阵n2列的每一列
+            C[i][j] = 0;  // 初始化为0
+            for (int k = 0; k < n1; k++)
+                C[i][j] = C[i][j] + A[i][k] * B[k][j];  // 对应项相乘相加求和
+        }
+    }
+    for (int i = 0; i < m1; i++) {
+        for (int j = 0; j < n2; j++)
+            cout << C[i][j] << "\t";
+        cout << endl;
+    }
+}
+
+void MatrixPlus()  // 加法实现
+{
+
+}
+
+void MatrixOperations()
+{
+    bool flag = false;
+    int select;
+    while (flag != true) {
+        flag = true;
+        cout << "请输入您想要实现的功能对应的序号：\n";
+        try {
+            cin >> select;
+        }
+        catch(...) {
+            select = 0;
+        }
+        switch (select)
+        {
+        case 1:
+            MatrixMultiplication();
+            break;
+        case 2:
+            MatrixPlus();
+            break;
+        default:
+            cout << "输入错误，请重新输入！";
+            flag = false;
+        }
+    }
+    
+}
 
 //选择排序与冒泡排序
 
@@ -197,12 +359,21 @@ int main()
 {
     //JudgeLeapYears();
 
+    //GradeConversion();
+
+    //MinMultiple();
+
     //FindNumber();
 
     //FindMaxMin();
 
     //TemperatureConversion();
 
-    CaseConversion();
+    //CaseConversion();
+
+    //CharacterStatistics();
+
+    MatrixOperations();
+
 	return 0;
 }
