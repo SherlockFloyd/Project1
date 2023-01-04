@@ -133,7 +133,13 @@
     <ClCompile Include="02sum.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="常见算法设计.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="DS.cpp" />
+    <ClCompile Include="Knowledge.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DS.h" />
+    <ClInclude Include="Knowledge.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

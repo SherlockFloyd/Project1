@@ -1,9 +1,11 @@
 #include<iostream>
 #include<cmath>
 #include<iomanip>
+#include "DS.h"
 using namespace std;
 
 #define N 100
+#define ElemType int  // 排序算法中使用
 
 //求最大值与最小值
 void FindMaxMin()
@@ -271,7 +273,6 @@ void CharacterStatistics()
 }
 
 //求两个矩阵之和、之积
-
 void MatrixMultiplication()  // 乘法实现
 {
     bool flag = false;
@@ -280,10 +281,10 @@ void MatrixMultiplication()  // 乘法实现
     int m1, n1, m2, n2;
     while (flag != true) {
         flag = true;
-        cout << "请输入第一个矩阵的维数（行、列）" << endl;
+        cout << "请输入第一个矩阵的维数（行、列）(维数不超20)" << endl;
         cin >> m1 >> n1;
 
-        cout << "请输入第二个矩阵的维数（行、列）" << endl;
+        cout << "请输入第二个矩阵的维数（行、列）(维数不超20)" << endl;
         cin >> m2 >> n2;
 
         if (n1 != m2) {
@@ -316,7 +317,28 @@ void MatrixMultiplication()  // 乘法实现
 
 void MatrixPlus()  // 加法实现
 {
-
+    bool flag = false;
+    const int M = 20, L = 20;
+    double A[M][L], B[M][L], C[M][L];
+    int m, n;
+    cout << "请输入相加矩阵的维数（行、列）(维数不超20)" << endl;
+    cin >> m >> n;
+    cout << "请按行优先输入第一个矩阵的元素" << endl;
+    for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++)
+            cin >> A[i][j];
+    cout << "请按行优先输入第二个矩阵的元素" << endl;
+    for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++)
+            cin >> B[i][j];
+    for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++)
+            C[i][j] = A[i][j] + B[i][j];
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++)
+            cout << C[i][j] << "\t";
+        cout << endl;
+    }
 }
 
 void MatrixOperations()
@@ -325,7 +347,9 @@ void MatrixOperations()
     int select;
     while (flag != true) {
         flag = true;
-        cout << "请输入您想要实现的功能对应的序号：\n";
+        cout << "请输入您想要实现的功能对应的序号：\n"
+            << "1：两矩阵相乘" << endl
+            << "2：两矩阵相加" << endl;
         try {
             cin >> select;
         }
@@ -349,13 +373,140 @@ void MatrixOperations()
 }
 
 //选择排序与冒泡排序
+inline void Swap(int& a, int& b)  // 交换两个元素(使用内联函数定义)
+{
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void SelectSort()
+{
+    int n, minix, select;
+    cout << "请输入待排序元素个数:\n";
+    cin >> n;
+    ElemType* A = (ElemType*)malloc(n * sizeof(ElemType));
+    cout << "请输入待排序元素\n";
+    for (int i = 0; i < n;i++) {
+        cin >> A[i];
+    }
+    cout << "请选择升序或者降序：\n"
+        << "1：升序" << endl
+        << "2：降序" << endl;
+    cin >> select;
+
+    for (int i = 0; i < n - 1; i++) {
+        minix = i;
+        for (int j = i + 1; j < n; j++) {
+            if (select == 1) {
+                if (A[j] < A[minix])
+                    minix = j;
+                else
+                    continue;
+            }    
+            else {
+                if (A[j] > A[minix])
+                    minix = j;
+                else
+                    continue;
+            }
+        } 
+        if (minix != i)
+            Swap(A[i], A[minix]);
+    }
+    cout << "排序后的元素序列为：\n";
+    for (int i = 0; i < n; i++)
+        cout << A[i] << " ";
+    free(A);
+}
+
+void BubbleSort()
+{
+    bool flag = false;  // 提前终止标志
+    int n, minix, select;
+    cout << "请输入待排序元素个数:\n";
+    cin >> n;
+    ElemType* A = (ElemType*)malloc(n * sizeof(ElemType));
+    cout << "请输入待排序元素\n";
+    for (int i = 0; i < n; i++) {
+        cin >> A[i];
+    }
+    cout << "请选择升序或者降序：\n"
+        << "1：升序" << endl
+        << "2：降序" << endl;
+    cin >> select;
+
+    for (int i = 0; i < n - 1; i++) {
+        flag = false;
+        for (int j = n - 1; j > i; j--) {
+            if (select == 1) {
+                if (A[j - 1] > A[j]) {
+                    Swap(A[j - 1], A[j]);
+                    flag = true;
+                }     
+            }
+            else {
+                if (A[j - 1] < A[j]) {
+                    Swap(A[j - 1], A[j]);
+                    flag = true;
+                }
+            }
+        }
+        if (flag == false)
+            break;
+    }
+    cout << "排序后的元素序列为：\n";
+    for (int i = 0; i < n; i++)
+        cout << A[i] << " ";
+    free(A);
+}
+
+//快速排序
+int Partition(ElemType A[], int low, int high)  // 一趟排序
+{
+    ElemType pivot = A[low];
+    while (low < high) {
+        while (low < high && A[high] >= pivot)
+            high--;
+        A[low] = A[high];
+        while (low < high && A[low] <= pivot)
+            low++;
+        A[high] = A[low];
+    }
+    A[low] = pivot;
+    return low;
+}
+
+void QuickSort(ElemType A[], int low, int high)  // 递归快排
+{
+    if (low < high) {
+        int key = Partition(A, low, high);
+        QuickSort(A, low, key - 1);
+        QuickSort(A, key + 1, high);
+    }
+}
+
+void QuickSortInput()  // 快排输入
+{
+    int n;
+    cout << "请输入待排序元素个数:\n";
+    cin >> n;
+    ElemType* A = (ElemType*)malloc(n * sizeof(ElemType));
+    cout << "请输入待排序元素\n";
+    for (int i = 0; i < n; i++)
+        cin >> A[i];
+    QuickSort(A, 0, n-1);  // 调用快排
+    cout << "排序后的元素序列为：" << endl;
+    for (int i = 0; i < n; i++)
+        cout << A[i] << "\t";
+}
 
 //链表的遍历、增加、删除、修改
 
 //文件的打开、读写、关闭
 
 
-int main()
+void DSEntrance()
 {
     //JudgeLeapYears();
 
@@ -373,7 +524,13 @@ int main()
 
     //CharacterStatistics();
 
-    MatrixOperations();
+    //MatrixOperations();
 
-	return 0;
+    //SelectSort();
+
+    //BubbleSort();
+
+    //QuickSortInput();
+
+	//return 0;
 }

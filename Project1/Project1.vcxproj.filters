@@ -21,8 +21,22 @@
     <ClCompile Include="01helloworld.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="常见算法设计.cpp">
+    <ClCompile Include="DS.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Knowledge.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DS.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Knowledge.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
