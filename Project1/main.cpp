@@ -1,3 +1,4 @@
+#pragma exection_character_set("GBK")
 #pragma warning(disable:4996)
 
 #include<iostream>

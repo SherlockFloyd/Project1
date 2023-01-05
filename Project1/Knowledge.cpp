@@ -242,7 +242,7 @@ void sort(char a[][COL], int n)
 			sort(a[j], a[j + 1]);
 }
 
-// 指针传值（&-取地址符号、*-指针变量）
+// 指针传值（&-取地址符号、*-指针变量,指针的使用必须先初始化）
 /*###########################################################################################################*/
 // ！注意 ！其中有重要知识点
 void swap(int* xp,int* yp)  // 指针变量作为形参，接收地址类型的实参
@@ -328,6 +328,320 @@ void FunctionPrinter()
 	cout << sqrt(9.0) << endl;  // 与上等价
 }
 
+ // 指针与一维数组及关系运算
+void One_Dimensional_ArrayPrinter()
+{
+	double a[5] = { 1,2,3.5,4,5.7 }, * p;  // a、p为double型指针变量，x为数组首地址，故a+1即为数组a首元素的下一个元素
+	for (p = a; p < a + 5; p++)     // 将数组首地址赋给p，当p超过数组首地址后五个元素后终止，p++是指指向p指针下一个元素
+									// 指针p+i = p + i*siezof(ElemType)，即指向当前元素的第后i数据的地址，并不是直接+i.
+									// 指针p-i = p - i*siezof(ElemType)，即指向当前元素的第前i数据的地址，并不是直接-i.
+		cout << *p << "\t";
+	cout << endl;
+
+	p = a;
+	// 数组元素不同表示形式
+	cout << "a[i]" << "\t" << "*(a+i)" << "\t" << "*(p+i)" << "\t" << "p[i]" << endl;
+	for (int i = 0; i < 5; i++)
+		cout << a[i] << "\t" << p[i] << "\t" << *(a + i) << "\t" << *(p + i) << endl;
+		     // 下标法1----------2----------------指针法1-------------2-------
+			 // a[i] = p[i] = *(a+i) = *(p+i)
+};
+
+// // 指针与一维数组及关系运算
+void Two_Dimensional_ArrayPrinter()
+{
+	/*
+	由于
+	a[0]是由a[0][0],a[0][1],a[0][2]和a[0][3]四个元素构成的一维数组，(a相当于一维数组的首地址)
+	因此
+	a[0]代表&a[0][0],即0行的首元素的地址
+	这样
+	a[0]+1代表首元素的下一个元素的地址即&a[0][1]		-->a[0]+j代表&a[0][j]
+	同理
+	a[1]代表&a[1][0],即1行的首元素的地址				-->a[1]+j代表&a[1][j]
+
+	a[i]代表&a[i[0],即i行的首元素的地址				-->a[i]+j代表&a[i][j]
+
+	由此得到：*(a[i]+j)等价于a[i][j]
+	又由于    a[i]等价于*(a+i),因此，*(a[i]+j)也等价于*(*(a+i)+j)
+	即：      *(*(a+i)+j)与a[i][j]等价
+	我们将    *(*(a+i)+j)称为二维数组元素a[i][j]的指针法表示。
+	其中，    a为首行地址，a+i为i行的行地址，而*(a+i)为a的i行0列元素的地址，而*(a+i)+j为a的i行j列元素的地址。
+	*/
+	int a[3][4] = {
+		{1,2,3,4},
+		{5,6,7,8},
+		{9,10,11,12} }; // 三行四列的二维数组可看作三个一维数组
+						// 三个一维数组的首地址分别为a[0],a[1],a[2]
+						// 
+	// 指向具有M个元素的一维数组指针的定义格式--> 类型名 (*变量名)[M]; 利用该指针变量可指向二维数组的行地址，M表示二维数组的列数
+	int(*p)[4];  //数组行指针
+	cout << "----------------------------------" << endl;  // 法一
+	for (p = a; p < a + 3; p++)  // a+i->依次指向下一行
+	{	//输出p所指行的各列元素值
+		for (int j = 0; j < 4; j++)
+			cout << *(*p + j) << "\t";  // *p + j 表示改行的第j个元素的地址，加*表示该元素
+		cout << endl;
+	}
+
+	cout << "----------------------------------" << endl;  // 法二
+	for (p = a; p < a + 3; p++)  // a+i->依次指向下一行
+	{	//输出p所指行的各列元素值
+		for (int* q = *p; q < *p + 4; q++)  // q是指向列元素类型的指针，初值为*p,即该行0列元素的地址
+											// <*p>整体为一维数组的首地址(与一维数组写法相似)，即行首地址、行数组指针
+			cout << *q << "\t";  // 
+		cout << endl;
+	}
+}
+
+// 字符型指针
+void StringPrinter()
+{
+	/*
+	字符串常量可看成存放在一个一维的字符数组中，当指针指向字符串后，引用字符串中的字符可使用下面的形式：
+	*(指针变量+下标) / 指针变量[下标]
+	
+	char str[],*pstr 异同点
+	str[] -->字符型数组
+	pstr  -->字符型指针
+
+	// 未初始化时
+	cin >> str;  !正确!，可从键盘接收数据流，保存至str数组中
+	cin >> pstr; !错误!，未初始化时pstr指针变量没有所指向的对象，不能进行读入值
+
+	str = "abc"  !错误!，str数组名为常量指针，不能够被赋值
+	pstr = "abc" !正确!，指针变量可以进行赋值（保存首地址）
+
+	为字符数组 str[] 赋值方法 1、定义时赋值
+							2、使用strcpy()函数 (int型数组可以直接用 = 赋值)
+	*/
+	char* str1 = "Hello World";;
+
+	// 指针数组定义格式 --> 类型 *数组名[元素个数]; 存储数据类型为ElemType指针类型
+	int* ptr[5];  // 定义5个int型的指针数组
+	char* str[] = { "Basic","Fortran","C++","Java"};  // 定义指向多个字符串的指针数组，str[i]将指向第i个字符串
+
+	// 实例：月份数字与英文转换
+	void ConversionMonth_Input();
+	ConversionMonth_Input();
+}
+
+// 结构体指针
+void StructPrinter()
+{
+	/*
+	结构体变量的指针：&结构体变量名
+	1.定义指向结构体变量的指针
+	  结构体类型*指针变量名；
+	2.使用结构指针访问结构变量中的成员
+	格式1：(*指针变量).成员名
+	格式2：指针变量->成员名
+		其中：->为结构指向运算符
+	*/
+
+	typedef struct Date {
+		int year;
+		int month;
+		int day;
+	}*date;
+
+	Date d = { 2023,1,8 }, * p = &d;  // 定义日期结构变量和指针变量
+	date s = &d;
+	cout << "格式一：" << (*p).year << "-" << (*p).month << "-" << (*p).day << endl;
+	cout << "格式二：" << p->year << "-" << p->month << "-" << p->day << endl;
+	cout << "指针型：" << s->year << "-" << s->month << "-" << s->day << endl;
+}
+
+// 动态数组（可通过变量指定数组长度）
+void DynamicArrays()
+{
+	/*
+	new 运算符--用于动态申请所需的内存空间
+	1.动态申请单个变量
+		指针变量 = new 类型; 无名变量，通过同类型指针指向
+	2.动态申请一维数组
+		指针变量 = new 类型[元素个数]; 无名变量，通过同类型指针指向
+
+	delete 运算符--用于释放动态申请的存储空间
+	1.动态释放单个变量：
+		delete 指针变量;	释放单个动态变量
+	2.动态释放数组
+		delete[] 指针变量;  释放动态数组
+	*/
+	double* pd = new double(100.0);  // 动态申请一个double型变量，初值为100.0
+
+	int n;
+	cout << "请输入动态申请一维数组的长度：" << endl;
+	cin >> n;
+	int* pi = new int[n];  // 动态申请长度为n的int型数组，若申请失败（内存不足），则为pi返回NULL，即0值
+	// int* pi = (int*)malloc(n * sizeof(int));  // C语言molloc用法
+	// free(pi);
+	if (pi == NULL) {
+		cout << "申请失败！";
+		return;
+	}
+	cout << "请输入数组各元素：" << endl;
+	for (int i = 0; i < n; i++)
+		cin >> pi[i];
+	for (int i = 0; i < n; i++)
+		cout << pi[i] << "\t";
+
+	delete pd;
+	delete[] pi;
+}
+
+// 指针的应用
+void UsingPrinter()
+{
+	int CharSort_Input();
+	CharSort_Input();  // 自定义字符串排序
+
+	int IPAddressTranslation_Input();
+	IPAddressTranslation_Input();  // IP二进制转十进制
+}
+
+
+/*函数实例*/
+/*###########################################################################################################*/
+
+// 月份转换函数
+char* ConversionMonth(int n)
+{
+	static char* month[] = {
+		"Illegal month",
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December",
+	};
+	return (n >= 1 && n <= 12) ? month[n] : month[0];
+}
+//调用入口，用户输入
+void ConversionMonth_Input()
+{
+	int n;
+	cout << "请输入月份：" << endl;
+	cin >> n;
+	cout << n << "-" << ConversionMonth(n) << endl;  // 输出字符串指针变量即输出该字符串中的内容
+}
+
+//自定义字符串排序函数
+/*自定义字符串拷贝和比较函数*/
+//字符串拷贝函数
+void CustomizationStrcpy(char* s1, char* s2)
+{
+	while (*s2 != 0)
+		*s1++ = *s2++;
+	* s1 = '\0';
+}
+//字符串比较函数
+int CustomizationStrcmp(char* s1, char* s2)
+{
+	while (*s1 = *s2 && *s1 != 0 && *s2 != 0)
+	{
+		s1++;
+		s2++;
+	}
+	return *s1 - *s2;
+}
+//字符交换函数
+void charswap(char* p,char* q)
+{
+	char t[10];
+	CustomizationStrcpy(t, p);
+	CustomizationStrcpy(p, q);
+	CustomizationStrcpy(q, t);
+}
+void CharSort(char(*p)[10], int n)  // 传入二维数组的行地址
+{
+	for (int i = 0; i < n; i++)
+		for (int j = i + 1; j < n; j++)
+			//if (strcmp(p[i], p[j]) > 0)  // 默认库函数
+			if (CustomizationStrcmp(p[i], p[j]) > 0)
+			{
+				/*char t[10];
+				strcpy(t, p[i]);
+				strcpy(p[i], p[j]);
+				strcpy(p[j], t);*/
+				charswap(p[i], p[j]);
+			}
+}
+//打印输出字符串
+void CharPrint(char(*s)[10], int n)
+{
+	for (int i = 0; i < n - 1; i++)
+		cout << s[i] << " ";
+	cout << s[n - 1] << endl;
+}
+//调用入口，用户输入
+void CharSort_Input()
+{
+	int n;
+	// char str[][10] = { "Zhang","Wang","Wen","xu","Li","zhou" };
+	cout << "请输入字符串个数：";
+	cin >> n;
+	char(*str)[10] = new char[n][10];
+	for (int i = 0; i < n; i++)
+	{
+		cout << "第" << i + 1 << "个字符串：";
+		cin >> str[i];
+	}
+	CharSort(str, n);
+	cout << "排序后的" << n << "个字符串：" << endl;
+	CharPrint(str, n);
+
+	delete[] str;
+}
+
+//IP地址二进制转十进制
+//自定义合法性检验函数
+bool check(char* str)
+{
+	int i;
+	for (i = 0; i < 32; i++)
+		if (str[i] != '1' && str[i] != '0')
+			return false;
+	return true;
+}
+//自定义32位二进制数转换为十进制数函数
+int BaseConversion(char* str)
+{
+	int n = 0;
+	for (int i = 0; i < 8; i++)
+		if (str[i] == '1')  // 二进制转十进制公式
+			n = n * 2 + 1;
+		else
+			n = n * 2;
+	return n;
+}
+//调用入口，用户输入
+int IPAddressTranslation_Input()
+{
+	char IP[33];
+	cout << "请输入32位二进制IP地址：" << endl;
+	cin >> IP;
+	if (strlen(IP) != 32)
+		cout << "IP地址长度应为32位" << endl;
+	else
+		if (!check(IP))
+			cout << "串中有8/1外字符，非正确IP地址" << endl;
+		else
+		{  //四次调用BaseConversion函数分别转换四组二进制数
+			cout << "IP址对应的点分十进制写法为：" << endl;
+			cout << BaseConversion(IP) << "." << BaseConversion(IP + 8) << "."
+				<< BaseConversion(IP + 16) << "." << BaseConversion(IP + 24) << endl;
+		}
+}
+
+/*###########################################################################################################*/
 
 
 void KnEntrance()
@@ -342,5 +656,10 @@ void KnEntrance()
 	//swap_Input();
 	//faver_Input();
 	//noblank_Input();
-	FunctionPrinter();
+	//FunctionPrinter();
+	//One_Dimensional_ArrayPrinter();
+	//Two_Dimensional_ArrayPrinter();
+	//StringPrinter();
+	//StructPrinter();
+	UsingPrinter();
 }
