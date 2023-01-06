@@ -493,10 +493,10 @@ void DynamicArrays()
 // 指针的应用
 void UsingPrinter()
 {
-	int CharSort_Input();
+	void CharSort_Input();
 	CharSort_Input();  // 自定义字符串排序
 
-	int IPAddressTranslation_Input();
+	void IPAddressTranslation_Input();
 	IPAddressTranslation_Input();  // IP二进制转十进制
 }
 
@@ -623,7 +623,7 @@ int BaseConversion(char* str)
 	return n;
 }
 //调用入口，用户输入
-int IPAddressTranslation_Input()
+void IPAddressTranslation_Input()
 {
 	char IP[33];
 	cout << "请输入32位二进制IP地址：" << endl;

@@ -30,12 +30,24 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="KnowledgeObject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DS.h">
       <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="Knowledge.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="KnowledgeObject.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeDown.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>

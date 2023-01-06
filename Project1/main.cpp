@@ -2,12 +2,12 @@
 #pragma warning(disable:4996)
 
 #include<iostream>
-#include<cmath>
-#include<iomanip>
 #include<time.h>
 
 #include "DS.h"
 #include "Knowledge.h"
+#include "KnowledgeObject.h"
+#include "TimeDown.hpp"
 
 using namespace std;
 
@@ -23,13 +23,14 @@ string GetTimeNow()
 
 int main()
 {
-	cout << "#################################" << endl
+	cout << "<==================================>" << endl
 		<< "当前运行时间：" << GetTimeNow() << endl
 		<< "作者：        冯少朋" << endl
 		<< "运行模式：    普通用户" << endl
-		<< "#################################" << endl;
+		<< "<==================================>" << endl;
 
-	KnEntrance();  // 知识点文件调用
+	//KnEntrance();  // 语法知识点文件调用
 	//DSEntrance();  // 算法文件调用
+	ObjectEntrance();  // 类与继承知识点文件调用
 
 }

@@ -136,10 +136,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="DS.cpp" />
     <ClCompile Include="Knowledge.cpp" />
+    <ClCompile Include="KnowledgeObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TimeDown.hpp" />
+    <ClInclude Include="Timer.hpp" />
     <ClInclude Include="DS.h" />
     <ClInclude Include="Knowledge.h" />
+    <ClInclude Include="KnowledgeObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
