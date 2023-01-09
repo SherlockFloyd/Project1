@@ -499,7 +499,7 @@ Fraction Fraction :: add_pro(Fraction u)
 	tmp = divisor(a, b);  // 计算分子、分母的公约数
 	a = a / tmp;  // 约去公约数
 	b = b / tmp;  // 约去公约数
-	return *this;  // 返回结果,返回原来对象的指针
+	return *this;  // 返回结果,返回原来的对象
 }
 
 
