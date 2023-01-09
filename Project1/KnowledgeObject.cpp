@@ -4,10 +4,9 @@
 #include<windows.h>
 #include<iomanip>
 #include<cstring>
+#include "KnowledgeObject.h"
 
 using namespace std;
-
-#include "KnowledgeObject.h"
 
 
 /*类的定义，声明及使用*/
@@ -97,9 +96,11 @@ protected:
 	int a;  // 分子可以定义为保护成员
 	int b;  // 分母应该定义为保护成员，因为要防止分母为0
 public:
+	Fraction(){}  // 若没有构造函数，使用未初始化的对象时会报错，但此时未初始化对象中存储的是不确定的随机值，不能直接拿来使用，需要覆盖
 	void set(int aa, int bb);  // 设置分子分母
 	void show();  // 显示分数
 	Fraction add(Fraction u);  // 加一个分数
+	Fraction add_pro(Fraction u);  // this指针测试函数，定义在this指针知识点处
 };
 // 设置分子、分母
 void Fraction::set(int aa, int bb)
@@ -118,10 +119,10 @@ void Fraction::show()
 	cout << a << "/" << b << endl;
 }
 //分数相加，本类对象加u
-Fraction Fraction::add(Fraction u) {  // 分数求和有问题	
+Fraction Fraction::add(Fraction u) {
 	int tmp;
-	Fraction v{};
-	v.a = a * v.b + b * u.a;  // 分子
+	Fraction v;
+	v.a = a * u.b + b * u.a;  // 分子
 	v.b = b * u.b;  // 分母 
 	tmp = divisor(v.a, v.b);  // 计算分子、分母的公约数
 	v.a = v.a / tmp;  // 约去公约数
@@ -165,11 +166,18 @@ void Fraction_Invoke()
 	cin >> c >> d;
 	f1.set(a, b);
 	f2.set(c, d);
+	cout << "两分数结果" << endl;
 	f1.show_real();
 	f2.show_real();
-	f3=f1.add(f2);   // 分数求和有问题
+	f3=f1.add(f2); 
+	cout << "求和结果" << endl;
 	f3.show();
 	cout << endl;
+
+	f3 = f1.add_pro(f2);  // 利用f1本身的对象空间存储计算结果，不重新创建中间对象，通过this指针访问
+	f1.show();
+	f3.show();
+	cout << "此时f1与f3值相同，通过this指针利用本身的存储空间计算的结果是破坏性的" << endl;
 }
 
 
@@ -296,6 +304,7 @@ class Date1 {
 private:
 	int year, month, day;
 public:
+	// 若没有构造函数，使用未初始化的对象时会报错，有构造函数则系统自动调用构造函数，不会报错
 	// 构造函数，用于类成员变量的初始化，参数表中的变量可赋初值也可不赋初值（初值赋值遵守函数赋初值规则，无初值的变量在前，初值变量在后）
 	Date1(int y , int m = 1, int d = 1) 
 	{
@@ -406,6 +415,7 @@ void Date1_Invoke()
 1、栈与堆
 对象放在堆上（系统自动分配与回收），就要用指针，也就是 对象指针->函数;
 	放在栈上（动态分配与回收），就要用 对象.函数;
+为明确运算的优先级，一般在加括号，如：(*this).function
 2、指针与对象
 如果是指针访问数据成员或成员函数，用 -> ;
 如果是某个数据类型的对象，访问自己的数据成员和成员函数用 . ;
@@ -441,18 +451,58 @@ void Date3_Invoke()
 
 	int* p2 = &date1.year;  // 等价于 int* p2 = &(date1.year) ，p2是指向date1中成员变量year的指针
 	int year2 = p1->year;  // 指向对象的指针用 ->
-	cout < *p2 << year2 << endl;
+	cout << *p2 << year2 << endl;
 
-	void(Date3:: * p3)(int, int, int);  // 指向构造函数（有参构造函数）的指针，类似Knowledge.cpp中函数指针的讲解（构造函数无返回值，故函数指针的返回值为空），与普通函数指针定义不同的是 Date3:: * p3 写法表明为Date3类中的指针
-	void (Date3:: * p4)();  // 指向构造函数（无参构造函数）的指针
-	p3 = Date3::init;  // p3等价于Date3中的init函数
-	p4 = Date3::print_ymd;  // p4等价于Date3中的print_ymd函数
+	void(Date3:: * p3)(int, int, int);  // 指向类成员函数的指针，类似Knowledge.cpp中函数指针的讲，与普通函数指针定义不同的是 Date3:: * p3 写法表明为Date3类中的指针
+	void (Date3:: * p4)();  // 指向类成员函数的指针
+	p3 = &Date3::init;  // p3等价于Date3中的init函数，p3为指针类型，应取成员函数地址赋值
+	p4 = &Date3::print_ymd;  // p4等价于Date3中的print_ymd函数
 	(date1.*p3)(2023, 4, 8);  // 等价于 date1->p3 ，调用init函数
 	(date1.*p4)();  // 调用print_ymd函数
 
 	Date3* p5 = new Date3;  // 动态申请对象指针
 	delete p5;
 }
+
+/*
+this指针
+每一个类的成员函数都包含一个指向本类对象的指针
+指针名为this
+该指针指向本类对象的起始地址
+当类中数据成员名与成员数中的形参名相同时，用this指针加以区分
+*/
+class Text
+{
+	int x;  // 无访问控制符，默认私有
+public:
+	Text(int = 0);  // 构造函数，当不赋初值时默认赋值为0，当赋初值时使用所赋值
+	void print();
+};
+Text::Text(int x)  // 构造函数定义
+{
+	this->x = x;  // 使用this区分局部变量与类成员变量
+}
+void Text::print()
+{
+	int x = 12138;
+	cout << "x\t的值为：" << x << endl;  // 访问局部变量x，值为局部变量的值
+	cout << "this->x\t的值为：" << x << endl;  // 访问类成员变量
+	cout << "(*this).x\t的值为：" << x << endl;  // // 访问类成员变量，this->x 等价于 (*this).x
+}
+// this指针结合分数加法函数，使用原来类的对象进行计算，覆盖原来的值，破坏了原来值
+Fraction Fraction :: add_pro(Fraction u)
+{
+	int tmp;
+	//Fraction v;
+	a = a * u.b + b * u.a;  // 用本身对象存储运算结果，破坏性
+	b = b * u.b;  // 分母
+	tmp = divisor(a, b);  // 计算分子、分母的公约数
+	a = a / tmp;  // 约去公约数
+	b = b / tmp;  // 约去公约数
+	return *this;  // 返回结果,返回原来对象的指针
+}
+
+
 
 /*学生类：实例练习*/
 /*====================================================================================================*/
@@ -677,9 +727,9 @@ void Robot_Invoke()
 void ObjectEntrance()
 {
 	//ClockInvoke();
-	//Fraction_Invoke();
+	Fraction_Invoke();
 	//Date_Invoke();
 	//Students_Invoke();
 	//Date1_Invoke();
-	Robot_Invoke();
+	//Robot_Invoke();
 }

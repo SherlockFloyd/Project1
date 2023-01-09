@@ -7,6 +7,7 @@
 #include "DS.h"
 #include "Knowledge.h"
 #include "KnowledgeObject.h"
+#include "KnowledgeInherit.h"
 #include "TimeDown.hpp"
 
 using namespace std;
@@ -31,6 +32,7 @@ int main()
 
 	//KnEntrance();  // 语法知识点文件调用
 	//DSEntrance();  // 算法文件调用
-	ObjectEntrance();  // 类与继承知识点文件调用
+	//ObjectEntrance();  // 类与继承知识点文件调用
+	InheritEntrance();
 
 }

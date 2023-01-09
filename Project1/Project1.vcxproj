@@ -133,12 +133,14 @@
     <ClCompile Include="02sum.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="KnowledgeInherit.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="DS.cpp" />
     <ClCompile Include="Knowledge.cpp" />
     <ClCompile Include="KnowledgeObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="KnowledgeInherit.h" />
     <ClInclude Include="TimeDown.hpp" />
     <ClInclude Include="Timer.hpp" />
     <ClInclude Include="DS.h" />
