@@ -9,6 +9,7 @@
 #include "KnowledgeObject.h"
 #include "KnowledgeInherit.h"
 #include "KnowledgePolymorphism.h"
+#include "KnowledgeStandardIO.h"
 #include "TimeDown.hpp"
 
 using namespace std;
@@ -35,6 +36,7 @@ int main()
 	//DSEntrance();  // 算法文件调用
 	//ObjectEntrance();  // 类与继承知识点文件调用
 	//InheritEntrance();  // 派生与继承知识点文件调用
-	PolymorphismEntrance();
+	//PolymorphismEntrance();  // 多态与运算符重载知识点文件调用
+	StandardIOEntrance();
 
 }

@@ -39,6 +39,9 @@
     <ClCompile Include="KnowledgePolymorphism.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="KnowledgeStandardIO.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DS.h">
@@ -60,6 +63,9 @@
       <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="KnowledgePolymorphism.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="KnowledgeStandardIO.h">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
