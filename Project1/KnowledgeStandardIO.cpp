@@ -620,6 +620,84 @@ void mp3cpy_invoke()
 	}
 }
 
+// 合并学生成绩
+class StudentGrade { // 学生信息类
+public:
+	int no; // 学号
+	string name; // 姓名
+	string classname; // 班级
+	float language; // 语文成绩
+	float english; // 大英成绩
+	float math; // 数学成绩
+	float average; // 平均成绩
+};
+// 读取学生成绩，输出与输入学号相同的学生成绩
+float getscore(string filename, int stdno) {
+	int stdno_temp;
+	float score;
+	ifstream grades(filename.c_str()); // 打开成绩文件
+	if (!grades) { // 判断文件打开是否正确
+		cout << "文件打开错误。" << endl;
+		return 0;
+	}
+	bool flag = false;
+	while (grades){
+		grades >> stdno_temp >> score;
+		if(grades) {  //读正确时
+			if(stdno_temp == stdno){
+				flag = true;
+				break; 
+			}
+		}
+	}
+	if (!flag)
+		score = 0;
+	grades.close();
+	return score; 
+}
+// 学生信息写文件运算符重载
+void operator<<(ostream& overall_grade, StudentGrade& student)
+{
+	overall_grade << student.no << '\t' << student.name
+		<< '\t' << student.classname << "\t";
+	overall_grade << '\t' << student.language;
+	overall_grade << '\t' << student.english;
+	overall_grade << '\t' << student.math;
+	overall_grade << '\t' << student.average;
+	overall_grade << endl;
+}
+// 合并学生成绩调用函数
+void studentgrade_invoke()
+{
+	StudentGrade student;
+	// 打开文件 
+	ifstream basic(".\\textfile\\basic_student_information.txt"); // 学生信息文件 
+	ofstream result(".\\textfile\\overall_grade.txt"); // 学生完整信息文件 
+
+	if (!basic || !result) { // 判断文件打开是否正确 
+		cout << "文件打开错误。" << endl;
+		return;
+	}
+	result << "学号\t\t姓名\t\t班级\t\t语文\t大英\t数学\t平均" << endl;
+	while (basic) {
+		// 读文件 
+		basic >> student.no >> student.name >> student.classname;
+		if (!basic) { // 读正确时才写文件 
+			break;
+		}
+		student.language = getscore(".\\textfile\\language_grade.txt", student.no);
+		student.english = getscore(".\\textfile\\english_grade.txt", student.no);
+		student.math = getscore(".\\textfile\\math_grade.txt", student.no);
+		student.average = (student.language + student.english + student.math) / 3;
+		// 写文件 
+		result << student;
+	}
+	//关闭文件 
+	result.close();
+	basic.close();
+	cout << "overall_grade.txt文件建立成功，请查阅！" << endl;
+}
+
 
 
 void StandardIOEntrance()
@@ -635,5 +713,6 @@ void StandardIOEntrance()
 	//Binaryfile();
 	//CardPlay_invoke();
 	//words_invoke();
-	mp3cpy_invoke();
+	//mp3cpy_invoke();
+	studentgrade_invoke();
 }

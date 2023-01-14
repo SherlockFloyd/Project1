@@ -227,8 +227,8 @@ void Shape_Invoke()
 // 运算符重载
 /*
 运算符重载指赋予运算符新的操作功能，主要用于对类的对象的操作
-?运算符重载定义：
-<类型> <类名>::operator <操作符>(<参数表>)
+运算符重载定义：
+<返回类型> <类名>::operator <操作符>(<参数表>)
 {
 	函数体
 }
@@ -236,12 +236,12 @@ void Shape_Invoke()
 */
 
 // 利用运算符重载实现复数的运算和判等
-// 负数类
+// 复数类
 class Complex
 {
 private:
 	double real, imag;  // 实部，虚部
-	//static Complex temp;  // 静态类编译出错
+	static Complex temp;  // 静态类对象，使用静态类对象而不在成员函数内定义临时对象节省了调用构造函数和析构函数的时间，提高效率
 public:
 	Complex(double r = 0, double i = 0) : real(r), imag(i) { }  // 构造函数
 	double Real() { return real; }  // 获得实部
@@ -254,10 +254,20 @@ public:
 	Complex operator ++(int);  // 单目运算符 ++x 重载
 	~Complex() { };  // 析构函数
 };
+Complex Complex::temp;  // 静态类对象
+
+// C++不可以在类中定义该类的对象
+/*
+创建一个对象A a1，a1里面又有对象a，这个对象里面还有一个对象。这样一直创建下去，直到内存耗尽，出现栈溢出。
+
+可以在类中定义该类的静态对象、该对象的指针或者引用。
+	因为静态的成员不在对象的内部，在data区，被这个类共享。所以不会出现递归创建。
+*/
+
 // 重载运算符 ＋，两边是虚数对象
 Complex Complex::operator + (Complex c) 
 {
-	Complex temp;
+	//Complex temp;
 	temp.real = real + c.real;
 	temp.imag = imag + c.imag;
 	return temp;
@@ -265,7 +275,7 @@ Complex Complex::operator + (Complex c)
 // 重载运算符＋，左边是虚数对象，右边是双精度数
 Complex Complex::operator + (double d) 
 {
-	Complex temp;
+	//Complex temp;
 	temp.real = real + d;
 	temp.imag = imag;
 	return temp;
@@ -287,7 +297,8 @@ Complex Complex::operator ++ ()
 // 后置++运算符定义，先输出后+1
 Complex Complex::operator ++ (int)
 {
-	Complex temp = *this;
+	//Complex 
+	temp = *this;
 	++real;  // 利用前置实现后置，减少代码重复
 	return temp;
 }
@@ -357,6 +368,6 @@ void PolymorphismEntrance()
 {
 	//mobile_Invoke();
 	//Shape_Invoke();
-	//Complex_Invoke();
-	Derived_Invoke();
+	Complex_Invoke();
+	//Derived_Invoke();
 }

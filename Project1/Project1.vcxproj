@@ -140,11 +140,13 @@
     <ClCompile Include="DS.cpp" />
     <ClCompile Include="Knowledge.cpp" />
     <ClCompile Include="KnowledgeObject.cpp" />
+    <ClCompile Include="text.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KnowledgeInherit.h" />
     <ClInclude Include="KnowledgePolymorphism.h" />
     <ClInclude Include="KnowledgeStandardIO.h" />
+    <ClInclude Include="text.h" />
     <ClInclude Include="TimeDown.hpp" />
     <ClInclude Include="Timer.hpp" />
     <ClInclude Include="DS.h" />

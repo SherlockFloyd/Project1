@@ -10,7 +10,9 @@
 #include "KnowledgeInherit.h"
 #include "KnowledgePolymorphism.h"
 #include "KnowledgeStandardIO.h"
+#include "KnowledgeTemplate.h"
 #include "TimeDown.hpp"
+#include "text.h"
 
 using namespace std;
 
@@ -23,6 +25,7 @@ string GetTimeNow()
 	strftime(tmp, sizeof(tmp), "%Y-%m-%d %H:%M:%S", localtime(&timep));
 	return tmp;
 }
+
 
 int main()
 {
@@ -37,6 +40,8 @@ int main()
 	//ObjectEntrance();  // 类与继承知识点文件调用
 	//InheritEntrance();  // 派生与继承知识点文件调用
 	//PolymorphismEntrance();  // 多态与运算符重载知识点文件调用
-	StandardIOEntrance();
+	//StandardIOEntrance();
+	TemplateEntrance();
 
+	//TextEntrance();  // 临时测试函数
 }
