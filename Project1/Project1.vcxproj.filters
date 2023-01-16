@@ -45,6 +45,9 @@
     <ClCompile Include="text.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="KnowledgeTemplate.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DS.h">
@@ -72,6 +75,9 @@
       <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="text.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="KnowledgeTemplate.h">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
