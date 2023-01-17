@@ -1,6 +1,10 @@
 #include<iostream>
+#include <sstream>
+#include<string>
 #include<cmath>
 #include<iomanip>
+#include <vector>
+#include<fstream>
 #include "DS.h"
 using namespace std;
 
@@ -502,8 +506,286 @@ void QuickSortInput()  // 快排输入
 }
 
 //链表的遍历、增加、删除、修改
+//链表节点定义
+typedef struct Linknode {
+    ElemType data;
+    struct Linknode* next;
+}*Linklist;
+// 初始化
+inline Linklist Init_Linklist()
+{
+    Linklist L = new Linknode;
+    L->next = NULL;
+    return L;
+}
+// 判空
+bool LinklistEmpty(Linklist L)
+{
+    if (L->next == NULL)
+        return true;
+    return false;
+}
+// 链表遍历
+void PrintLinklist(Linklist L)
+{
+    Linknode* p = L->next;
+    if (LinklistEmpty(L)) {
+        cout << "该链表为空！" << endl;
+        return;
+    }
+    cout << "该链表各节点的值依次为：" << endl;
+    while (p) {
+        cout << p->data << "\t";
+        p = p->next;
+    }
+    cout << endl;
+}
+// 添加元素
+inline bool AddLinklistFront(Linklist L, ElemType k[])
+{
+    for (int i = 0; k[i]!='\0'; i++) {
+        Linknode* p = new Linknode;
+        p->data = k[i];
+        p->next = L->next;
+        L->next = p;
+    }
+    return true;
+}
+inline bool AddLinklistRear(Linklist L, ElemType k[])
+{
+    Linklist r = L;
+    for (int i = 0; i < k[i] != '\0'; i++) {
+        Linknode* p = new Linknode;
+        p->data = k[i];
+        r->next = p;
+        r = p;
+    }
+    r->next = NULL;
+    return true;
+}
+// 插入元素
+bool InsertLinklist(Linklist L, ElemType k, int n)
+{
+    Linklist p = L;
+    for (int i = 0; (i < n - 1 && p != NULL); i++)
+        p = p->next;
+    if (p == NULL) {
+        cout << "插入位置超出链表长度！" << endl;
+        return false;
+    }
+    Linknode* r = new Linknode;
+    r->data = k;
+    r->next = p->next;
+    p->next = r;
+    return true;
+}
+// 删除元素
+bool DeleteLinklist(Linklist L,ElemType k)
+{
+    Linknode* p = L->next;
+    Linknode* q = L;
+    while (p != NULL && p->data != k) {
+        p = p->next;
+        q = q->next;
+    }
+    if (p == NULL) {
+        cout << "要删除的元素不存在！" << endl;
+        return false;
+    }
+    q->next = p->next;
+    delete p;
+    return true;
+}
+// 修改元素
+bool UpdateLinklist(Linklist L, ElemType ok, ElemType k)
+{
+    Linknode* p = L->next;
+    while (p != NULL && p->data != ok)
+        p = p->next;
+    if (p == NULL) {
+        cout << "要修改的元素不存在！" << endl;
+        return false;
+    }
+    p->data = k;
+    return true;
+}
+
+
+void LinkedListOperations()
+{
+    ElemType k,ok;
+    int mode, located;
+    bool flag;
+
+    int arr[N];
+    char c = 'a';
+    int i = 0;
+    /*string str;
+    stringstream ss(str);
+    vector<int> nums;*/
+
+    // 初始化
+    Linklist L = Init_Linklist();
+
+    while (true) {
+        cout << "1、向链表添加元素（头或尾）。" << endl
+            << "2、遍历输出元素。" << endl
+            << "3、插入元素（任意位置）。" << endl
+            << "4、删除元素。" << endl
+            << "5、修改元素值" << endl
+            << "0、退出" << endl
+            << "请输入您想实现的功能：" << endl;
+        cin >> mode;
+        switch (mode) {
+        case 1:
+            // 元素插入
+            cout << "请输入添加的元素值，用空格隔开，回车结束：" << endl;
+
+            /*getchar();
+            getline(cin, str);
+            int tmp;
+            while (ss >> tmp)
+                nums.push_back(tmp);*/
+
+            
+            for (; c != '\n'; i++) {
+                cin >> arr[i];
+                c = getchar();
+            }
+            arr[i] = '\0';
+
+            cout << "请输入插入方式：" << endl
+                << "1、头插法" << endl
+                << "2、尾插法" << endl;
+            cin >> mode;
+            flag = (mode == 1 && mode != 2) ? AddLinklistFront(L, arr) : AddLinklistRear(L, arr);
+            if (!flag)
+                cout << "插入失败！" << endl;
+            cout << "插入成功！" << endl;
+            break;
+        case 2:
+            //遍历
+            PrintLinklist(L);
+            break;
+        case 3:
+            //插入
+            cout << "请输入插入元素及在链表中的位置：" << endl;
+            cin >> k >> located;
+            flag = InsertLinklist(L, k, located);
+            if (!flag)
+                cout << "插入失败！" << endl;
+            cout << "插入成功！" << endl;
+            break;
+        case 4:
+            // 删除
+            cout << "请输入要删除的元素：" << endl;
+            cin >> k;
+            flag = DeleteLinklist(L, k);
+            if (!flag)
+                cout << "删除失败！" << endl;
+            cout << "删除成功！" << endl;
+            break;
+        case 5:
+            // 修改元素
+            cout << "请输入要修改的元素和修改后的值：" << endl;
+            cin >> ok >> k;
+            flag = UpdateLinklist(L, ok, k);
+            if (!flag)
+                cout << "修改失败！" << endl;
+            cout << "修改成功！" << endl;
+            break;
+        case 0:
+            while (L != NULL) {
+                Linknode* p = L->next;
+                delete L;
+                L = p;
+            }
+            cout << "所用空间已清除！" << endl;
+            return;
+        default:
+            cout << "输入错误，请重新输入！" << endl;
+        }
+    }
+}
 
 //文件的打开、读写、关闭
+// 合并学生成绩
+class StudentGrade { // 学生信息类
+public:
+    int no; // 学号
+    string name; // 姓名
+    string classname; // 班级
+    float language; // 语文成绩
+    float english; // 大英成绩
+    float math; // 数学成绩
+    float average; // 平均成绩
+};
+// 读取学生成绩，输出与输入学号相同的学生成绩
+float getscore(string filename, int stdno) {
+    int stdno_temp;
+    float score;
+    ifstream grades(filename.c_str()); // 打开成绩文件
+    if (!grades) { // 判断文件打开是否正确
+        cout << "文件打开错误。" << endl;
+        return 0;
+    }
+    bool flag = false;
+    while (grades) {
+        grades >> stdno_temp >> score;
+        if (grades) {  //读正确时
+            if (stdno_temp == stdno) {
+                flag = true;
+                break;
+            }
+        }
+    }
+    if (!flag)
+        score = 0;
+    grades.close();
+    return score;
+}
+// 学生信息写文件运算符重载
+void operator<<(ostream& overall_grade, StudentGrade& student)
+{
+    overall_grade << student.no << '\t' << student.name
+        << '\t' << student.classname << "\t";
+    overall_grade << '\t' << student.language;
+    overall_grade << '\t' << student.english;
+    overall_grade << '\t' << student.math;
+    overall_grade << '\t' << student.average;
+    overall_grade << endl;
+}
+// 合并学生成绩调用函数
+void studentgrade_invoke()
+{
+    StudentGrade student;
+    // 打开文件 
+    ifstream basic(".\\textfile\\basic_student_information.txt"); // 学生信息文件 
+    ofstream result(".\\textfile\\overall_grade.txt"); // 学生完整信息文件 
+
+    if (!basic || !result) { // 判断文件打开是否正确 
+        cout << "文件打开错误。" << endl;
+        return;
+    }
+    result << "学号\t\t姓名\t\t班级\t\t语文\t大英\t数学\t平均" << endl;
+    while (basic) {
+        // 读文件 
+        basic >> student.no >> student.name >> student.classname;
+        if (!basic) { // 读正确时才写文件 
+            break;
+        }
+        student.language = getscore(".\\textfile\\language_grade.txt", student.no);
+        student.english = getscore(".\\textfile\\english_grade.txt", student.no);
+        student.math = getscore(".\\textfile\\math_grade.txt", student.no);
+        student.average = (student.language + student.english + student.math) / 3;
+        // 写文件 
+        result << student;
+    }
+    //关闭文件 
+    result.close();
+    basic.close();
+    cout << "overall_grade.txt文件建立成功，请查阅！" << endl;
+}
 
 
 void DSEntrance()
@@ -531,6 +813,10 @@ void DSEntrance()
     //BubbleSort();
 
     //QuickSortInput();
+
+    //LinkedListOperations();
+
+    studentgrade_invoke();
 
 	//return 0;
 }

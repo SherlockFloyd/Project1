@@ -81,4 +81,21 @@
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Knowledgefile\container.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="textfile\basic_student_information.txt" />
+    <Text Include="textfile\basic_student_information01.txt" />
+    <Text Include="textfile\english_grade.txt" />
+    <Text Include="textfile\language_grade.txt" />
+    <Text Include="textfile\math_grade.txt" />
+    <Text Include="textfile\overall_grade.txt" />
+    <Text Include="textfile\poker_file.txt" />
+    <Text Include="textfile\words_source.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="textfile\稻香.mp3" />
+    <Media Include="textfile\拷贝.mp3" />
+  </ItemGroup>
 </Project>
