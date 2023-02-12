@@ -11,6 +11,7 @@
 #include "KnowledgePolymorphism.h"
 #include "KnowledgeStandardIO.h"
 #include "KnowledgeTemplate.h"
+#include "KnowledgeConstructDataType.h"
 #include "TimeDown.hpp"
 #include "text.h"
 
@@ -36,12 +37,13 @@ int main()
 		<< "<==================================>" << endl;
 
 	//KnEntrance();  // 语法知识点文件调用
-	DSEntrance();  // 算法文件调用
+	//DSEntrance();  // 算法文件调用
 	//ObjectEntrance();  // 类与继承知识点文件调用
 	//InheritEntrance();  // 派生与继承知识点文件调用
 	//PolymorphismEntrance();  // 多态与运算符重载知识点文件调用
 	//StandardIOEntrance();
 	//TemplateEntrance();
+	ConstructDataType();
 
 	//TextEntrance();  // 临时测试函数
 }

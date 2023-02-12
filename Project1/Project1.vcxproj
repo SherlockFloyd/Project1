@@ -133,17 +133,19 @@
     <ClCompile Include="02sum.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="DS.cpp" />
+    <ClCompile Include="KnowledgeConstructDataType.cpp" />
     <ClCompile Include="KnowledgeInherit.cpp" />
     <ClCompile Include="KnowledgePolymorphism.cpp" />
     <ClCompile Include="KnowledgeStandardIO.cpp" />
     <ClCompile Include="KnowledgeTemplate.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="DS.cpp" />
     <ClCompile Include="Knowledge.cpp" />
     <ClCompile Include="KnowledgeObject.cpp" />
     <ClCompile Include="text.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="KnowledgeConstructDataType.h" />
     <ClInclude Include="KnowledgeInherit.h" />
     <ClInclude Include="KnowledgePolymorphism.h" />
     <ClInclude Include="KnowledgeStandardIO.h" />

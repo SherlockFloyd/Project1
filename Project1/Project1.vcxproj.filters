@@ -21,9 +21,6 @@
     <ClCompile Include="01helloworld.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DS.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Knowledge.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -46,6 +43,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="KnowledgeTemplate.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="KnowledgeConstructDataType.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DS.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -78,6 +81,9 @@
       <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="KnowledgeTemplate.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="KnowledgeConstructDataType.h">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
