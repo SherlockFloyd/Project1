@@ -9,22 +9,22 @@
 using namespace std;
 
 #define N 100
-#define ElemType int  // ÅÅĞòËã·¨ÖĞÊ¹ÓÃ
+#define ElemType int  // æ’åºç®—æ³•ä¸­ä½¿ç”¨
 
-//Çó×î´óÖµÓë×îĞ¡Öµ
+//æ±‚æœ€å¤§å€¼ä¸æœ€å°å€¼
 void FindMaxMin()
 {
     int n = -1;
     double max, min;
     //double A[N];
     while (n < 1) {
-        cout << "ÇëÊäÈë´ı²éÕÒµÄÔªËØ¸öÊı\n";
+        cout << "è¯·è¾“å…¥å¾…æŸ¥æ‰¾çš„å…ƒç´ ä¸ªæ•°\n";
         cin >> n;
         if (n < 1)
-            cout << "ÊäÈë´íÎó£¬ÇëÖØĞÂÊäÈë£¡\n";
+            cout << "è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼\n";
     }
     double* A = (double*)malloc(n * sizeof(double));
-    cout << "ÇëÒÀ´ÎÊäÈë" << n << "¸öÔªËØ,ÒÔ¿Õ¸ñ¸ô¿ª£¬»Ø³µ½áÊø\n";
+    cout << "è¯·ä¾æ¬¡è¾“å…¥" << n << "ä¸ªå…ƒç´ ,ä»¥ç©ºæ ¼éš”å¼€ï¼Œå›è½¦ç»“æŸ\n";
     for (int i = 0; i < n; i++)
         cin >> A[i];
     max = A[0];
@@ -35,26 +35,26 @@ void FindMaxMin()
         if (A[i] < min)
             min = A[i];
     }
-    cout << "¸Ã×éÔªËØÖĞµÄ×î´óÖµÎª£º" << max << "\n¸Ã×éÔªËØÖĞµÄ×îĞ¡ÖµÎª£º" << min;
+    cout << "è¯¥ç»„å…ƒç´ ä¸­çš„æœ€å¤§å€¼ä¸ºï¼š" << max << "\nè¯¥ç»„å…ƒç´ ä¸­çš„æœ€å°å€¼ä¸ºï¼š" << min;
     free(A);
 }
 
-//»ªÊÏÎÂ¶ÈÓëÉãÊÏÎÂ¶ÈµÄ»»Ëã
+//åæ°æ¸©åº¦ä¸æ‘„æ°æ¸©åº¦çš„æ¢ç®—
 void TemperatureConversion()
 {
     double h,f;
-    cout << "ÇëÊäÈë»ªÊÏÎÂ¶È£º";
+    cout << "è¯·è¾“å…¥åæ°æ¸©åº¦ï¼š";
     cin >> h;
     f = (h - 32) * 5 / 9;
-    cout << "¶ÔÓ¦ÉãÊÏÎÂ¶ÈÎª£º" <<fixed << setprecision(1) << f;  // ÉãÊÏ¶È±£ÁôÒ»Î»Ğ¡Êı
+    cout << "å¯¹åº”æ‘„æ°æ¸©åº¦ä¸ºï¼š" <<fixed << setprecision(1) << f;  // æ‘„æ°åº¦ä¿ç•™ä¸€ä½å°æ•°
 }
 
 
-//´óĞ¡Ğ´×ÖÄ¸×ª»»
+//å¤§å°å†™å­—æ¯è½¬æ¢
 void CaseConversion()
 {
     string str;
-    cout << "ÇëÊäÈëÒ»¸ö×Ö·û´®£º\n";
+    cout << "è¯·è¾“å…¥ä¸€ä¸ªå­—ç¬¦ä¸²ï¼š\n";
     cin >> str;
 
     for (char& c : str) {
@@ -65,41 +65,41 @@ void CaseConversion()
             c = toupper(c);
         }
     }
-    cout << "×ª»»ºóµÄ×Ö·û´®Îª£º\n" << str << endl;
+    cout << "è½¬æ¢åçš„å­—ç¬¦ä¸²ä¸ºï¼š\n" << str << endl;
 }
 
-//ÅĞ±ğÈòÄê
-/*ÈòÄê£ºÄÜ±»4Õû³ıµ«²»ÄÜ±»100Õû³ı£¬»òÕßÄÜ±»400Õû³ı*/
+//åˆ¤åˆ«é—°å¹´
+/*é—°å¹´ï¼šèƒ½è¢«4æ•´é™¤ä½†ä¸èƒ½è¢«100æ•´é™¤ï¼Œæˆ–è€…èƒ½è¢«400æ•´é™¤*/
 void JudgeLeapYears()
 {
     int year;
-    cout << "ÇëÊäÈëÄê·İ: ";
+    cout << "è¯·è¾“å…¥å¹´ä»½: ";
     cin >> year;
 
     if ((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0))
-        cout << year << " ÊÇÈòÄê\n";
+        cout << year << " æ˜¯é—°å¹´\n";
     else
-        cout << year << " ²»ÊÇÈòÄê\n";
+        cout << year << " ä¸æ˜¯é—°å¹´\n";
 
     //if (year % 4 == 0)
     //{
     //    if (year % 100 == 0)
     //    {
-    //        // // ÕâÀïÈç¹û±» 400 Õû³ıÊÇÈòÄê
+    //        // // è¿™é‡Œå¦‚æœè¢« 400 æ•´é™¤æ˜¯é—°å¹´
     //        if (year % 400 == 0)
-    //            cout << year << " ÊÇÈòÄê";
+    //            cout << year << " æ˜¯é—°å¹´";
     //        else
-    //            cout << year << " ²»ÊÇÈòÄê";
+    //            cout << year << " ä¸æ˜¯é—°å¹´";
     //    }
     //    else
-    //        cout << year << " ÊÇÈòÄê";
+    //        cout << year << " æ˜¯é—°å¹´";
     //}
     //else
-    //    cout << year << " ²»ÊÇÈòÄê";
+    //    cout << year << " ä¸æ˜¯é—°å¹´";
 
 }
 
-//°Ù·ÖÖÆ³É¼¨ÓëÎå·ÖÖÆ³É¼¨»¥Ïà×ª»»
+//ç™¾åˆ†åˆ¶æˆç»©ä¸äº”åˆ†åˆ¶æˆç»©äº’ç›¸è½¬æ¢
 void GradeConversion()
 {
     bool flag = false;
@@ -108,7 +108,7 @@ void GradeConversion()
     string new_grade;
     while (flag!=true) {
         flag = true;
-        cout << "ÇëÊäÈë°Ù·ÖÖÆ³É¼¨£º\n";
+        cout << "è¯·è¾“å…¥ç™¾åˆ†åˆ¶æˆç»©ï¼š\n";
         try {
             cin >> old_grade;
         }
@@ -116,38 +116,49 @@ void GradeConversion()
             flag = false;
         }
         if (flag == false || old_grade < 0 || old_grade>100) {
-            cout << "ÊäÈëÓĞÎó£¬ÇëÖØĞÂÊäÈë£¡\n";
+            cout << "è¾“å…¥æœ‰è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼\n";
             flag = false;
         }
     }
     switch ((int)old_grade / 10) {
     case 10:
-        new_grade.assign("ÓÅ");
+        new_grade.assign("ä¼˜");
         break;
     case 9:
-        new_grade.assign("ÓÅ");
+        new_grade.assign("ä¼˜");
         break;
     case 8:
-        new_grade.assign("Á¼");
+        new_grade.assign("è‰¯");
         break;
     case 7:
-        new_grade.assign("ÖĞ");
+        new_grade.assign("ä¸­");
         break;
     case 6:
-        new_grade.assign("¼°¸ñ");
+        new_grade.assign("åŠæ ¼");
         break;
     default:
-        new_grade.assign("²»¼°¸ñ");
+        new_grade.assign("ä¸åŠæ ¼");
     }
-    cout << old_grade << "·Ö¶ÔÓ¦µÄÎå·ÖÖÆ³É¼¨Îª£º" << new_grade << endl;
+    cout << old_grade << "åˆ†å¯¹åº”çš„äº”åˆ†åˆ¶æˆç»©ä¸ºï¼š" << new_grade << endl;
 }
 
-//ÇóÁ½¸öÊıµÄ×î´ó¹«ÒòÊıºÍ×îĞ¡¹«±¶Êı
-int gcd(int a, int b) {  // Õ·×ªÏà³ı·¨Çó×î´ó¹«Òò×Ó
+//æ±‚ä¸¤ä¸ªæ•°çš„æœ€å¤§å…¬å› æ•°å’Œæœ€å°å…¬å€æ•°
+int gcd(int a, int b) {  // è¾—è½¬ç›¸é™¤æ³•æ±‚æœ€å¤§å…¬å› å­
     if (b == 0) {
         return a;
     }
     return gcd(b, a % b);
+	
+    /*
+    éé€’å½’æ–¹å¼
+    while(b!=0)
+    {
+    	int temp=b;
+	b=a%b;
+	a=temp;
+    }
+    return a;
+    */
 }
 
 int lcm(int a, int b) {
@@ -157,36 +168,36 @@ int lcm(int a, int b) {
 void MinMultiple()
 {
     int a, b;
-    cout << "ÇëÊäÈëÁ½¸öÕıÕûÊı£º \n";
+    cout << "è¯·è¾“å…¥ä¸¤ä¸ªæ­£æ•´æ•°ï¼š \n";
     cin >> a >> b;
 
-    cout << a << " ºÍ " << b << " µÄ×î´ó¹«Ô¼ÊıÎª£º " << gcd(a, b) << endl;
-    cout << a << " ºÍ " << b << " µÄ×îĞ¡¹«±¶ÊıÎª£º " << lcm(a, b) << endl;
+    cout << a << " å’Œ " << b << " çš„æœ€å¤§å…¬çº¦æ•°ä¸ºï¼š " << gcd(a, b) << endl;
+    cout << a << " å’Œ " << b << " çš„æœ€å°å…¬å€æ•°ä¸ºï¼š " << lcm(a, b) << endl;
 }
 
-//ÇóËØÊı¡¢Ë®ÏÉ»¨Êı¡¢ÍêÈ«Æ½·½Êı
+//æ±‚ç´ æ•°ã€æ°´ä»™èŠ±æ•°ã€å®Œå…¨å¹³æ–¹æ•°
 void FindNumber()
 {
-    // ¹¦ÄÜÑ¡Ôñ±äÁ¿
+    // åŠŸèƒ½é€‰æ‹©å˜é‡
     int select;
     bool flag = false;
 
-    // ¹¦ÄÜÊµÏÖ±äÁ¿
+    // åŠŸèƒ½å®ç°å˜é‡
     bool isPrime = true;
     int sum, num = -1, d1, d2, d3, front = 100, rear = 1000;
     double r;
 
     while (flag != true) {
         flag = true;
-        cout << "ÊäÈëÄúÏëÊµÏÖµÄ¹¦ÄÜĞòºÅ£º\n";
-        cout << "1:ÇóËØÊı\n";
-        cout << "2:ÇóË®ÏÉ»¨Êı\n";
-        cout << "3:ÇóÍêÈ«Æ½·½Êı\n";
+        cout << "è¾“å…¥æ‚¨æƒ³å®ç°çš„åŠŸèƒ½åºå·ï¼š\n";
+        cout << "1:æ±‚ç´ æ•°\n";
+        cout << "2:æ±‚æ°´ä»™èŠ±æ•°\n";
+        cout << "3:æ±‚å®Œå…¨å¹³æ–¹æ•°\n";
         cin >> select;
 
         switch (select) {
-        case 1:  // ËØÊı£ºÖ»ÄÜ±»1ºÍ¸ÃÊı±¾ÉíÕû³ı
-            cout << "ÇëÊäÈëÒ»¸öÕıÕûÊı£º\n";
+        case 1:  // ç´ æ•°ï¼šåªèƒ½è¢«1å’Œè¯¥æ•°æœ¬èº«æ•´é™¤
+            cout << "è¯·è¾“å…¥ä¸€ä¸ªæ­£æ•´æ•°ï¼š\n";
             cin >> num;
             for (int i = 2; i <= num / 2; ++i)
             {
@@ -197,64 +208,64 @@ void FindNumber()
                 }
             }
             if (isPrime)
-                cout << num << "ÊÇËØÊı\n";
+                cout << num << "æ˜¯ç´ æ•°\n";
             else
-                cout << num << "²»ÊÇËØÊı\n";
+                cout << num << "ä¸æ˜¯ç´ æ•°\n";
             break;
-        case 2:  // Ë®ÏÉ»¨Êı£º¸ÃÊıµÈÓÚ¸÷Î»Èı´Î·½ºÍ
-            /*cout << "ÇëÊäÈë²éÕÒµÄÇø¼ä£º\n";
+        case 2:  // æ°´ä»™èŠ±æ•°ï¼šè¯¥æ•°ç­‰äºå„ä½ä¸‰æ¬¡æ–¹å’Œ
+            /*cout << "è¯·è¾“å…¥æŸ¥æ‰¾çš„åŒºé—´ï¼š\n";
             cin >> front >> rear;*/
-            cout << "´Ó" << front << "µ½" << rear << "µÄË®ÏÉ»¨ÊıÎª£º\n";
+            cout << "ä»" << front << "åˆ°" << rear << "çš„æ°´ä»™èŠ±æ•°ä¸ºï¼š\n";
             for (int i = front; i < rear; i++) {
                 num = i;
-                d1 = num % 10;  // Ê®Î»
+                d1 = num % 10;  // åä½
                 num = num / 10;  
-                d2 = num % 10;  // °ÙÎ»
+                d2 = num % 10;  // ç™¾ä½
                 num = num / 10;
-                d3 = num % 10;  // Ç§Î»
+                d3 = num % 10;  // åƒä½
                 sum = d1 * d1 * d1 + d2 * d2 * d2 + d3 * d3 * d3;
                 if (sum == i)
                     cout << i << "\t";
             }
             break;
-        case 3:  // ÍêÈ«Æ½·½Êı£º¸ÃÊı¿ÉÓÉÒ»¸öÊıÆ½·½µÃÀ´
+        case 3:  // å®Œå…¨å¹³æ–¹æ•°ï¼šè¯¥æ•°å¯ç”±ä¸€ä¸ªæ•°å¹³æ–¹å¾—æ¥
             while (num < 0) {
-                cout << "ÇëÊäÈëÒ»¸öÕıÕûÊı£º\n";
+                cout << "è¯·è¾“å…¥ä¸€ä¸ªæ­£æ•´æ•°ï¼š\n";
                 cin >> num;
             }
             /*r = sqrt(num);
             r = (int)r;
             if(r == num)
-                cout << num << "ÊÇÍêÈ«Æ½·½Êı\n";
+                cout << num << "æ˜¯å®Œå…¨å¹³æ–¹æ•°\n";
             else
-                cout << num << "²»ÊÇÍêÈ«Æ½·½ÊÇ\n";*/
+                cout << num << "ä¸æ˜¯å®Œå…¨å¹³æ–¹æ˜¯\n";*/
 
             for (int i = 1; i < num; i++) {
                 sum = i * i;
                 if (num == sum) {
-                    cout << num << "ÊÇÍêÈ«Æ½·½Êı\n";
+                    cout << num << "æ˜¯å®Œå…¨å¹³æ–¹æ•°\n";
                     break;
                 }
                 else if (sum > num)
-                    cout << num << "²»ÊÇÍêÈ«Æ½·½ÊÇ\n";
+                    cout << num << "ä¸æ˜¯å®Œå…¨å¹³æ–¹æ˜¯\n";
                     break;
             }
             break;
         default:
             flag = false;
-            cout << "ÊäÈë´íÎó£¬ÇëÖØĞÂÊäÈë";
+            cout << "è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥";
         }
     }
     
 }
 
-//Í³¼ÆÊäÈë×Ö·ûÖĞµÄÀà±ğ
+//ç»Ÿè®¡è¾“å…¥å­—ç¬¦ä¸­çš„ç±»åˆ«
 void CharacterStatistics()
 {
     char str[N];
     int i = 0;
     int len = 0, capital = 0, smallletter = 0, digit = 0, others = 0;
-    cout << "ÇëÊäÈëÒ»´®²»´óÓÚ50¸ö×Ö·ûµÄ×Ö·û´®£º\n";
+    cout << "è¯·è¾“å…¥ä¸€ä¸²ä¸å¤§äº50ä¸ªå­—ç¬¦çš„å­—ç¬¦ä¸²ï¼š\n";
     cin.getline(str, N);
     while (str[i] != '\0') {
         len++;
@@ -268,16 +279,16 @@ void CharacterStatistics()
             others++;
         i++;
     }
-    cout << "×Ö·û´®×Ü³¤¶ÈÎª£º" << len << endl
-        << "´óĞ´×ÖÄ¸¸öÊıÎª£º" << capital << endl
-        << "Ğ¡Ğ´×ÖÄ¸¸öÊıÎª£º" << smallletter << endl
-        << "Êı ×Ö ¸ö Êı Îª£º" << digit << endl
-        << "ÆäËû×Ö·û¸öÊıÎª£º" << others << endl;
+    cout << "å­—ç¬¦ä¸²æ€»é•¿åº¦ä¸ºï¼š" << len << endl
+        << "å¤§å†™å­—æ¯ä¸ªæ•°ä¸ºï¼š" << capital << endl
+        << "å°å†™å­—æ¯ä¸ªæ•°ä¸ºï¼š" << smallletter << endl
+        << "æ•° å­— ä¸ª æ•° ä¸ºï¼š" << digit << endl
+        << "å…¶ä»–å­—ç¬¦ä¸ªæ•°ä¸ºï¼š" << others << endl;
 
 }
 
-//ÇóÁ½¸ö¾ØÕóÖ®ºÍ¡¢Ö®»ı
-void MatrixMultiplication()  // ³Ë·¨ÊµÏÖ
+//æ±‚ä¸¤ä¸ªçŸ©é˜µä¹‹å’Œã€ä¹‹ç§¯
+void MatrixMultiplication()  // ä¹˜æ³•å®ç°
 {
     bool flag = false;
     const int M = 20, L = 20, K = 20;
@@ -285,31 +296,31 @@ void MatrixMultiplication()  // ³Ë·¨ÊµÏÖ
     int m1, n1, m2, n2;
     while (flag != true) {
         flag = true;
-        cout << "ÇëÊäÈëµÚÒ»¸ö¾ØÕóµÄÎ¬Êı£¨ĞĞ¡¢ÁĞ£©(Î¬Êı²»³¬20)" << endl;
+        cout << "è¯·è¾“å…¥ç¬¬ä¸€ä¸ªçŸ©é˜µçš„ç»´æ•°ï¼ˆè¡Œã€åˆ—ï¼‰(ç»´æ•°ä¸è¶…20)" << endl;
         cin >> m1 >> n1;
 
-        cout << "ÇëÊäÈëµÚ¶ş¸ö¾ØÕóµÄÎ¬Êı£¨ĞĞ¡¢ÁĞ£©(Î¬Êı²»³¬20)" << endl;
+        cout << "è¯·è¾“å…¥ç¬¬äºŒä¸ªçŸ©é˜µçš„ç»´æ•°ï¼ˆè¡Œã€åˆ—ï¼‰(ç»´æ•°ä¸è¶…20)" << endl;
         cin >> m2 >> n2;
 
         if (n1 != m2) {
             flag = false;
-            cout << "µÚÒ»¸ö¾ØÕóµÄÁĞÊıÓ¦µ±µÈÓÚµÚ¶ş¸ö¾ØÕóµÄĞĞÊı£¬ÇëÖØĞÂÊäÈë£¡\n";
+            cout << "ç¬¬ä¸€ä¸ªçŸ©é˜µçš„åˆ—æ•°åº”å½“ç­‰äºç¬¬äºŒä¸ªçŸ©é˜µçš„è¡Œæ•°ï¼Œè¯·é‡æ–°è¾“å…¥ï¼\n";
         }
     }
-    cout << "Çë°´ĞĞÓÅÏÈÊäÈëµÚÒ»¸ö¾ØÕóµÄÔªËØ" << endl;
+    cout << "è¯·æŒ‰è¡Œä¼˜å…ˆè¾“å…¥ç¬¬ä¸€ä¸ªçŸ©é˜µçš„å…ƒç´ " << endl;
     for (int i = 0; i < m1; i++)
         for (int j = 0; j < n1; j++)
             cin >> A[i][j];
-    cout << "Çë°´ĞĞÓÅÏÈÊäÈëµÚ¶ş¸ö¾ØÕóµÄÔªËØ" << endl;
+    cout << "è¯·æŒ‰è¡Œä¼˜å…ˆè¾“å…¥ç¬¬äºŒä¸ªçŸ©é˜µçš„å…ƒç´ " << endl;
     for (int i = 0; i < m2; i++)
         for (int j = 0; j < n2; j++)
             cin >> B[i][j];
 
-    for (int i = 0; i < m1; i++) {  // ×îÖÕ¾ØÕóm1ĞĞµÄÃ¿Ò»ĞĞ
-        for (int j = 0; j < n2; j++) {  // ×îÖÕ¾ØÕón2ÁĞµÄÃ¿Ò»ÁĞ
-            C[i][j] = 0;  // ³õÊ¼»¯Îª0
+    for (int i = 0; i < m1; i++) {  // æœ€ç»ˆçŸ©é˜µm1è¡Œçš„æ¯ä¸€è¡Œ
+        for (int j = 0; j < n2; j++) {  // æœ€ç»ˆçŸ©é˜µn2åˆ—çš„æ¯ä¸€åˆ—
+            C[i][j] = 0;  // åˆå§‹åŒ–ä¸º0
             for (int k = 0; k < n1; k++)
-                C[i][j] = C[i][j] + A[i][k] * B[k][j];  // ¶ÔÓ¦ÏîÏà³ËÏà¼ÓÇóºÍ
+                C[i][j] = C[i][j] + A[i][k] * B[k][j];  // å¯¹åº”é¡¹ç›¸ä¹˜ç›¸åŠ æ±‚å’Œ
         }
     }
     for (int i = 0; i < m1; i++) {
@@ -319,19 +330,19 @@ void MatrixMultiplication()  // ³Ë·¨ÊµÏÖ
     }
 }
 
-void MatrixPlus()  // ¼Ó·¨ÊµÏÖ
+void MatrixPlus()  // åŠ æ³•å®ç°
 {
     bool flag = false;
     const int M = 20, L = 20;
     double A[M][L], B[M][L], C[M][L];
     int m, n;
-    cout << "ÇëÊäÈëÏà¼Ó¾ØÕóµÄÎ¬Êı£¨ĞĞ¡¢ÁĞ£©(Î¬Êı²»³¬20)" << endl;
+    cout << "è¯·è¾“å…¥ç›¸åŠ çŸ©é˜µçš„ç»´æ•°ï¼ˆè¡Œã€åˆ—ï¼‰(ç»´æ•°ä¸è¶…20)" << endl;
     cin >> m >> n;
-    cout << "Çë°´ĞĞÓÅÏÈÊäÈëµÚÒ»¸ö¾ØÕóµÄÔªËØ" << endl;
+    cout << "è¯·æŒ‰è¡Œä¼˜å…ˆè¾“å…¥ç¬¬ä¸€ä¸ªçŸ©é˜µçš„å…ƒç´ " << endl;
     for (int i = 0; i < m; i++)
         for (int j = 0; j < n; j++)
             cin >> A[i][j];
-    cout << "Çë°´ĞĞÓÅÏÈÊäÈëµÚ¶ş¸ö¾ØÕóµÄÔªËØ" << endl;
+    cout << "è¯·æŒ‰è¡Œä¼˜å…ˆè¾“å…¥ç¬¬äºŒä¸ªçŸ©é˜µçš„å…ƒç´ " << endl;
     for (int i = 0; i < m; i++)
         for (int j = 0; j < n; j++)
             cin >> B[i][j];
@@ -351,9 +362,9 @@ void MatrixOperations()
     int select;
     while (flag != true) {
         flag = true;
-        cout << "ÇëÊäÈëÄúÏëÒªÊµÏÖµÄ¹¦ÄÜ¶ÔÓ¦µÄĞòºÅ£º\n"
-            << "1£ºÁ½¾ØÕóÏà³Ë" << endl
-            << "2£ºÁ½¾ØÕóÏà¼Ó" << endl;
+        cout << "è¯·è¾“å…¥æ‚¨æƒ³è¦å®ç°çš„åŠŸèƒ½å¯¹åº”çš„åºå·ï¼š\n"
+            << "1ï¼šä¸¤çŸ©é˜µç›¸ä¹˜" << endl
+            << "2ï¼šä¸¤çŸ©é˜µç›¸åŠ " << endl;
         try {
             cin >> select;
         }
@@ -369,15 +380,15 @@ void MatrixOperations()
             MatrixPlus();
             break;
         default:
-            cout << "ÊäÈë´íÎó£¬ÇëÖØĞÂÊäÈë£¡";
+            cout << "è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼";
             flag = false;
         }
     }
     
 }
 
-//Ñ¡ÔñÅÅĞòÓëÃ°ÅİÅÅĞò
-inline void Swap(int& a, int& b)  // ½»»»Á½¸öÔªËØ(Ê¹ÓÃÄÚÁªº¯Êı¶¨Òå)
+//é€‰æ‹©æ’åºä¸å†’æ³¡æ’åº
+inline void Swap(int& a, int& b)  // äº¤æ¢ä¸¤ä¸ªå…ƒç´ (ä½¿ç”¨å†…è”å‡½æ•°å®šä¹‰)
 {
     int temp = a;
     a = b;
@@ -387,16 +398,16 @@ inline void Swap(int& a, int& b)  // ½»»»Á½¸öÔªËØ(Ê¹ÓÃÄÚÁªº¯Êı¶¨Òå)
 void SelectSort()
 {
     int n, minix, select;
-    cout << "ÇëÊäÈë´ıÅÅĞòÔªËØ¸öÊı:\n";
+    cout << "è¯·è¾“å…¥å¾…æ’åºå…ƒç´ ä¸ªæ•°:\n";
     cin >> n;
     ElemType* A = (ElemType*)malloc(n * sizeof(ElemType));
-    cout << "ÇëÊäÈë´ıÅÅĞòÔªËØ\n";
+    cout << "è¯·è¾“å…¥å¾…æ’åºå…ƒç´ \n";
     for (int i = 0; i < n;i++) {
         cin >> A[i];
     }
-    cout << "ÇëÑ¡ÔñÉıĞò»òÕß½µĞò£º\n"
-        << "1£ºÉıĞò" << endl
-        << "2£º½µĞò" << endl;
+    cout << "è¯·é€‰æ‹©å‡åºæˆ–è€…é™åºï¼š\n"
+        << "1ï¼šå‡åº" << endl
+        << "2ï¼šé™åº" << endl;
     cin >> select;
 
     for (int i = 0; i < n - 1; i++) {
@@ -418,7 +429,7 @@ void SelectSort()
         if (minix != i)
             Swap(A[i], A[minix]);
     }
-    cout << "ÅÅĞòºóµÄÔªËØĞòÁĞÎª£º\n";
+    cout << "æ’åºåçš„å…ƒç´ åºåˆ—ä¸ºï¼š\n";
     for (int i = 0; i < n; i++)
         cout << A[i] << " ";
     free(A);
@@ -426,18 +437,18 @@ void SelectSort()
 
 void BubbleSort()
 {
-    bool flag = false;  // ÌáÇ°ÖÕÖ¹±êÖ¾
+    bool flag = false;  // æå‰ç»ˆæ­¢æ ‡å¿—
     int n, minix, select;
-    cout << "ÇëÊäÈë´ıÅÅĞòÔªËØ¸öÊı:\n";
+    cout << "è¯·è¾“å…¥å¾…æ’åºå…ƒç´ ä¸ªæ•°:\n";
     cin >> n;
     ElemType* A = (ElemType*)malloc(n * sizeof(ElemType));
-    cout << "ÇëÊäÈë´ıÅÅĞòÔªËØ\n";
+    cout << "è¯·è¾“å…¥å¾…æ’åºå…ƒç´ \n";
     for (int i = 0; i < n; i++) {
         cin >> A[i];
     }
-    cout << "ÇëÑ¡ÔñÉıĞò»òÕß½µĞò£º\n"
-        << "1£ºÉıĞò" << endl
-        << "2£º½µĞò" << endl;
+    cout << "è¯·é€‰æ‹©å‡åºæˆ–è€…é™åºï¼š\n"
+        << "1ï¼šå‡åº" << endl
+        << "2ï¼šé™åº" << endl;
     cin >> select;
 
     for (int i = 0; i < n - 1; i++) {
@@ -459,14 +470,14 @@ void BubbleSort()
         if (flag == false)
             break;
     }
-    cout << "ÅÅĞòºóµÄÔªËØĞòÁĞÎª£º\n";
+    cout << "æ’åºåçš„å…ƒç´ åºåˆ—ä¸ºï¼š\n";
     for (int i = 0; i < n; i++)
         cout << A[i] << " ";
     free(A);
 }
 
-//¿ìËÙÅÅĞò
-int Partition(ElemType A[], int low, int high)  // Ò»ÌËÅÅĞò
+//å¿«é€Ÿæ’åº
+int Partition(ElemType A[], int low, int high)  // ä¸€è¶Ÿæ’åº
 {
     ElemType pivot = A[low];
     while (low < high) {
@@ -481,7 +492,7 @@ int Partition(ElemType A[], int low, int high)  // Ò»ÌËÅÅĞò
     return low;
 }
 
-void QuickSort(ElemType A[], int low, int high)  // µİ¹é¿ìÅÅ
+void QuickSort(ElemType A[], int low, int high)  // é€’å½’å¿«æ’
 {
     if (low < high) {
         int key = Partition(A, low, high);
@@ -490,57 +501,57 @@ void QuickSort(ElemType A[], int low, int high)  // µİ¹é¿ìÅÅ
     }
 }
 
-void QuickSortInput()  // ¿ìÅÅÊäÈë
+void QuickSortInput()  // å¿«æ’è¾“å…¥
 {
     int n;
-    cout << "ÇëÊäÈë´ıÅÅĞòÔªËØ¸öÊı:\n";
+    cout << "è¯·è¾“å…¥å¾…æ’åºå…ƒç´ ä¸ªæ•°:\n";
     cin >> n;
     ElemType* A = (ElemType*)malloc(n * sizeof(ElemType));
-    cout << "ÇëÊäÈë´ıÅÅĞòÔªËØ\n";
+    cout << "è¯·è¾“å…¥å¾…æ’åºå…ƒç´ \n";
     for (int i = 0; i < n; i++)
         cin >> A[i];
-    QuickSort(A, 0, n-1);  // µ÷ÓÃ¿ìÅÅ
-    cout << "ÅÅĞòºóµÄÔªËØĞòÁĞÎª£º" << endl;
+    QuickSort(A, 0, n-1);  // è°ƒç”¨å¿«æ’
+    cout << "æ’åºåçš„å…ƒç´ åºåˆ—ä¸ºï¼š" << endl;
     for (int i = 0; i < n; i++)
         cout << A[i] << "\t";
 }
 
-//Á´±íµÄ±éÀú¡¢Ôö¼Ó¡¢É¾³ı¡¢ĞŞ¸Ä
-//Á´±í½Úµã¶¨Òå
+//é“¾è¡¨çš„éå†ã€å¢åŠ ã€åˆ é™¤ã€ä¿®æ”¹
+//é“¾è¡¨èŠ‚ç‚¹å®šä¹‰
 typedef struct Linknode {
     ElemType data;
     struct Linknode* next;
 }*Linklist;
-// ³õÊ¼»¯
+// åˆå§‹åŒ–
 inline Linklist Init_Linklist()
 {
     Linklist L = new Linknode;
     L->next = NULL;
     return L;
 }
-// ÅĞ¿Õ
+// åˆ¤ç©º
 bool LinklistEmpty(Linklist L)
 {
     if (L->next == NULL)
         return true;
     return false;
 }
-// Á´±í±éÀú
+// é“¾è¡¨éå†
 void PrintLinklist(Linklist L)
 {
     Linknode* p = L->next;
     if (LinklistEmpty(L)) {
-        cout << "¸ÃÁ´±íÎª¿Õ£¡" << endl;
+        cout << "è¯¥é“¾è¡¨ä¸ºç©ºï¼" << endl;
         return;
     }
-    cout << "¸ÃÁ´±í¸÷½ÚµãµÄÖµÒÀ´ÎÎª£º" << endl;
+    cout << "è¯¥é“¾è¡¨å„èŠ‚ç‚¹çš„å€¼ä¾æ¬¡ä¸ºï¼š" << endl;
     while (p) {
         cout << p->data << "\t";
         p = p->next;
     }
     cout << endl;
 }
-// Ìí¼ÓÔªËØ
+// æ·»åŠ å…ƒç´ 
 inline bool AddLinklistFront(Linklist L, ElemType k[])
 {
     for (int i = 0; k[i]!='\0'; i++) {
@@ -563,14 +574,14 @@ inline bool AddLinklistRear(Linklist L, ElemType k[])
     r->next = NULL;
     return true;
 }
-// ²åÈëÔªËØ
+// æ’å…¥å…ƒç´ 
 bool InsertLinklist(Linklist L, ElemType k, int n)
 {
     Linklist p = L;
     for (int i = 0; (i < n - 1 && p != NULL); i++)
         p = p->next;
     if (p == NULL) {
-        cout << "²åÈëÎ»ÖÃ³¬³öÁ´±í³¤¶È£¡" << endl;
+        cout << "æ’å…¥ä½ç½®è¶…å‡ºé“¾è¡¨é•¿åº¦ï¼" << endl;
         return false;
     }
     Linknode* r = new Linknode;
@@ -579,7 +590,7 @@ bool InsertLinklist(Linklist L, ElemType k, int n)
     p->next = r;
     return true;
 }
-// É¾³ıÔªËØ
+// åˆ é™¤å…ƒç´ 
 bool DeleteLinklist(Linklist L,ElemType k)
 {
     Linknode* p = L->next;
@@ -589,21 +600,21 @@ bool DeleteLinklist(Linklist L,ElemType k)
         q = q->next;
     }
     if (p == NULL) {
-        cout << "ÒªÉ¾³ıµÄÔªËØ²»´æÔÚ£¡" << endl;
+        cout << "è¦åˆ é™¤çš„å…ƒç´ ä¸å­˜åœ¨ï¼" << endl;
         return false;
     }
     q->next = p->next;
     delete p;
     return true;
 }
-// ĞŞ¸ÄÔªËØ
+// ä¿®æ”¹å…ƒç´ 
 bool UpdateLinklist(Linklist L, ElemType ok, ElemType k)
 {
     Linknode* p = L->next;
     while (p != NULL && p->data != ok)
         p = p->next;
     if (p == NULL) {
-        cout << "ÒªĞŞ¸ÄµÄÔªËØ²»´æÔÚ£¡" << endl;
+        cout << "è¦ä¿®æ”¹çš„å…ƒç´ ä¸å­˜åœ¨ï¼" << endl;
         return false;
     }
     p->data = k;
@@ -624,22 +635,22 @@ void LinkedListOperations()
     stringstream ss(str);
     vector<int> nums;*/
 
-    // ³õÊ¼»¯
+    // åˆå§‹åŒ–
     Linklist L = Init_Linklist();
 
     while (true) {
-        cout << "1¡¢ÏòÁ´±íÌí¼ÓÔªËØ£¨Í·»òÎ²£©¡£" << endl
-            << "2¡¢±éÀúÊä³öÔªËØ¡£" << endl
-            << "3¡¢²åÈëÔªËØ£¨ÈÎÒâÎ»ÖÃ£©¡£" << endl
-            << "4¡¢É¾³ıÔªËØ¡£" << endl
-            << "5¡¢ĞŞ¸ÄÔªËØÖµ" << endl
-            << "0¡¢ÍË³ö" << endl
-            << "ÇëÊäÈëÄúÏëÊµÏÖµÄ¹¦ÄÜ£º" << endl;
+        cout << "1ã€å‘é“¾è¡¨æ·»åŠ å…ƒç´ ï¼ˆå¤´æˆ–å°¾ï¼‰ã€‚" << endl
+            << "2ã€éå†è¾“å‡ºå…ƒç´ ã€‚" << endl
+            << "3ã€æ’å…¥å…ƒç´ ï¼ˆä»»æ„ä½ç½®ï¼‰ã€‚" << endl
+            << "4ã€åˆ é™¤å…ƒç´ ã€‚" << endl
+            << "5ã€ä¿®æ”¹å…ƒç´ å€¼" << endl
+            << "0ã€é€€å‡º" << endl
+            << "è¯·è¾“å…¥æ‚¨æƒ³å®ç°çš„åŠŸèƒ½ï¼š" << endl;
         cin >> mode;
         switch (mode) {
         case 1:
-            // ÔªËØ²åÈë
-            cout << "ÇëÊäÈëÌí¼ÓµÄÔªËØÖµ£¬ÓÃ¿Õ¸ñ¸ô¿ª£¬»Ø³µ½áÊø£º" << endl;
+            // å…ƒç´ æ’å…¥
+            cout << "è¯·è¾“å…¥æ·»åŠ çš„å…ƒç´ å€¼ï¼Œç”¨ç©ºæ ¼éš”å¼€ï¼Œå›è½¦ç»“æŸï¼š" << endl;
 
             /*getchar();
             getline(cin, str);
@@ -654,45 +665,45 @@ void LinkedListOperations()
             }
             arr[i] = '\0';
 
-            cout << "ÇëÊäÈë²åÈë·½Ê½£º" << endl
-                << "1¡¢Í·²å·¨" << endl
-                << "2¡¢Î²²å·¨" << endl;
+            cout << "è¯·è¾“å…¥æ’å…¥æ–¹å¼ï¼š" << endl
+                << "1ã€å¤´æ’æ³•" << endl
+                << "2ã€å°¾æ’æ³•" << endl;
             cin >> mode;
             flag = (mode == 1 && mode != 2) ? AddLinklistFront(L, arr) : AddLinklistRear(L, arr);
             if (!flag)
-                cout << "²åÈëÊ§°Ü£¡" << endl;
-            cout << "²åÈë³É¹¦£¡" << endl;
+                cout << "æ’å…¥å¤±è´¥ï¼" << endl;
+            cout << "æ’å…¥æˆåŠŸï¼" << endl;
             break;
         case 2:
-            //±éÀú
+            //éå†
             PrintLinklist(L);
             break;
         case 3:
-            //²åÈë
-            cout << "ÇëÊäÈë²åÈëÔªËØ¼°ÔÚÁ´±íÖĞµÄÎ»ÖÃ£º" << endl;
+            //æ’å…¥
+            cout << "è¯·è¾“å…¥æ’å…¥å…ƒç´ åŠåœ¨é“¾è¡¨ä¸­çš„ä½ç½®ï¼š" << endl;
             cin >> k >> located;
             flag = InsertLinklist(L, k, located);
             if (!flag)
-                cout << "²åÈëÊ§°Ü£¡" << endl;
-            cout << "²åÈë³É¹¦£¡" << endl;
+                cout << "æ’å…¥å¤±è´¥ï¼" << endl;
+            cout << "æ’å…¥æˆåŠŸï¼" << endl;
             break;
         case 4:
-            // É¾³ı
-            cout << "ÇëÊäÈëÒªÉ¾³ıµÄÔªËØ£º" << endl;
+            // åˆ é™¤
+            cout << "è¯·è¾“å…¥è¦åˆ é™¤çš„å…ƒç´ ï¼š" << endl;
             cin >> k;
             flag = DeleteLinklist(L, k);
             if (!flag)
-                cout << "É¾³ıÊ§°Ü£¡" << endl;
-            cout << "É¾³ı³É¹¦£¡" << endl;
+                cout << "åˆ é™¤å¤±è´¥ï¼" << endl;
+            cout << "åˆ é™¤æˆåŠŸï¼" << endl;
             break;
         case 5:
-            // ĞŞ¸ÄÔªËØ
-            cout << "ÇëÊäÈëÒªĞŞ¸ÄµÄÔªËØºÍĞŞ¸ÄºóµÄÖµ£º" << endl;
+            // ä¿®æ”¹å…ƒç´ 
+            cout << "è¯·è¾“å…¥è¦ä¿®æ”¹çš„å…ƒç´ å’Œä¿®æ”¹åçš„å€¼ï¼š" << endl;
             cin >> ok >> k;
             flag = UpdateLinklist(L, ok, k);
             if (!flag)
-                cout << "ĞŞ¸ÄÊ§°Ü£¡" << endl;
-            cout << "ĞŞ¸Ä³É¹¦£¡" << endl;
+                cout << "ä¿®æ”¹å¤±è´¥ï¼" << endl;
+            cout << "ä¿®æ”¹æˆåŠŸï¼" << endl;
             break;
         case 0:
             while (L != NULL) {
@@ -700,39 +711,39 @@ void LinkedListOperations()
                 delete L;
                 L = p;
             }
-            cout << "ËùÓÃ¿Õ¼äÒÑÇå³ı£¡" << endl;
+            cout << "æ‰€ç”¨ç©ºé—´å·²æ¸…é™¤ï¼" << endl;
             return;
         default:
-            cout << "ÊäÈë´íÎó£¬ÇëÖØĞÂÊäÈë£¡" << endl;
+            cout << "è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼" << endl;
         }
     }
 }
 
-//ÎÄ¼şµÄ´ò¿ª¡¢¶ÁĞ´¡¢¹Ø±Õ
-// ºÏ²¢Ñ§Éú³É¼¨
-class StudentGrade { // Ñ§ÉúĞÅÏ¢Àà
+//æ–‡ä»¶çš„æ‰“å¼€ã€è¯»å†™ã€å…³é—­
+// åˆå¹¶å­¦ç”Ÿæˆç»©
+class StudentGrade { // å­¦ç”Ÿä¿¡æ¯ç±»
 public:
-    int no; // Ñ§ºÅ
-    string name; // ĞÕÃû
-    string classname; // °à¼¶
-    float language; // ÓïÎÄ³É¼¨
-    float english; // ´óÓ¢³É¼¨
-    float math; // ÊıÑ§³É¼¨
-    float average; // Æ½¾ù³É¼¨
+    int no; // å­¦å·
+    string name; // å§“å
+    string classname; // ç­çº§
+    float language; // è¯­æ–‡æˆç»©
+    float english; // å¤§è‹±æˆç»©
+    float math; // æ•°å­¦æˆç»©
+    float average; // å¹³å‡æˆç»©
 };
-// ¶ÁÈ¡Ñ§Éú³É¼¨£¬Êä³öÓëÊäÈëÑ§ºÅÏàÍ¬µÄÑ§Éú³É¼¨
+// è¯»å–å­¦ç”Ÿæˆç»©ï¼Œè¾“å‡ºä¸è¾“å…¥å­¦å·ç›¸åŒçš„å­¦ç”Ÿæˆç»©
 float getscore(string filename, int stdno) {
     int stdno_temp;
     float score;
-    ifstream grades(filename.c_str()); // ´ò¿ª³É¼¨ÎÄ¼ş
-    if (!grades) { // ÅĞ¶ÏÎÄ¼ş´ò¿ªÊÇ·ñÕıÈ·
-        cout << "ÎÄ¼ş´ò¿ª´íÎó¡£" << endl;
+    ifstream grades(filename.c_str()); // æ‰“å¼€æˆç»©æ–‡ä»¶
+    if (!grades) { // åˆ¤æ–­æ–‡ä»¶æ‰“å¼€æ˜¯å¦æ­£ç¡®
+        cout << "æ–‡ä»¶æ‰“å¼€é”™è¯¯ã€‚" << endl;
         return 0;
     }
     bool flag = false;
     while (grades) {
         grades >> stdno_temp >> score;
-        if (grades) {  //¶ÁÕıÈ·Ê±
+        if (grades) {  //è¯»æ­£ç¡®æ—¶
             if (stdno_temp == stdno) {
                 flag = true;
                 break;
@@ -744,7 +755,7 @@ float getscore(string filename, int stdno) {
     grades.close();
     return score;
 }
-// Ñ§ÉúĞÅÏ¢Ğ´ÎÄ¼şÔËËã·ûÖØÔØ
+// å­¦ç”Ÿä¿¡æ¯å†™æ–‡ä»¶è¿ç®—ç¬¦é‡è½½
 void operator<<(ostream& overall_grade, StudentGrade& student)
 {
     overall_grade << student.no << '\t' << student.name
@@ -755,36 +766,36 @@ void operator<<(ostream& overall_grade, StudentGrade& student)
     overall_grade << '\t' << student.average;
     overall_grade << endl;
 }
-// ºÏ²¢Ñ§Éú³É¼¨µ÷ÓÃº¯Êı
+// åˆå¹¶å­¦ç”Ÿæˆç»©è°ƒç”¨å‡½æ•°
 void studentgrade_invoke()
 {
     StudentGrade student;
-    // ´ò¿ªÎÄ¼ş 
-    ifstream basic(".\\textfile\\basic_student_information.txt"); // Ñ§ÉúĞÅÏ¢ÎÄ¼ş 
-    ofstream result(".\\textfile\\overall_grade.txt"); // Ñ§ÉúÍêÕûĞÅÏ¢ÎÄ¼ş 
+    // æ‰“å¼€æ–‡ä»¶ 
+    ifstream basic(".\\textfile\\basic_student_information.txt"); // å­¦ç”Ÿä¿¡æ¯æ–‡ä»¶ 
+    ofstream result(".\\textfile\\overall_grade.txt"); // å­¦ç”Ÿå®Œæ•´ä¿¡æ¯æ–‡ä»¶ 
 
-    if (!basic || !result) { // ÅĞ¶ÏÎÄ¼ş´ò¿ªÊÇ·ñÕıÈ· 
-        cout << "ÎÄ¼ş´ò¿ª´íÎó¡£" << endl;
+    if (!basic || !result) { // åˆ¤æ–­æ–‡ä»¶æ‰“å¼€æ˜¯å¦æ­£ç¡® 
+        cout << "æ–‡ä»¶æ‰“å¼€é”™è¯¯ã€‚" << endl;
         return;
     }
-    result << "Ñ§ºÅ\t\tĞÕÃû\t\t°à¼¶\t\tÓïÎÄ\t´óÓ¢\tÊıÑ§\tÆ½¾ù" << endl;
+    result << "å­¦å·\t\tå§“å\t\tç­çº§\t\tè¯­æ–‡\tå¤§è‹±\tæ•°å­¦\tå¹³å‡" << endl;
     while (basic) {
-        // ¶ÁÎÄ¼ş 
+        // è¯»æ–‡ä»¶ 
         basic >> student.no >> student.name >> student.classname;
-        if (!basic) { // ¶ÁÕıÈ·Ê±²ÅĞ´ÎÄ¼ş 
+        if (!basic) { // è¯»æ­£ç¡®æ—¶æ‰å†™æ–‡ä»¶ 
             break;
         }
         student.language = getscore(".\\textfile\\language_grade.txt", student.no);
         student.english = getscore(".\\textfile\\english_grade.txt", student.no);
         student.math = getscore(".\\textfile\\math_grade.txt", student.no);
         student.average = (student.language + student.english + student.math) / 3;
-        // Ğ´ÎÄ¼ş 
+        // å†™æ–‡ä»¶ 
         result << student;
     }
-    //¹Ø±ÕÎÄ¼ş 
+    //å…³é—­æ–‡ä»¶ 
     result.close();
     basic.close();
-    cout << "overall_grade.txtÎÄ¼ş½¨Á¢³É¹¦£¬Çë²éÔÄ£¡" << endl;
+    cout << "overall_grade.txtæ–‡ä»¶å»ºç«‹æˆåŠŸï¼Œè¯·æŸ¥é˜…ï¼" << endl;
 }
 
 
