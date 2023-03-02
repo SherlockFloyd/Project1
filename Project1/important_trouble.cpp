@@ -198,6 +198,61 @@ void text()
     cout << "修改后：" << a << endl;
 }
 
+void function_inherit(int a, int b)
+{
+    cout << "函数一：a的值为：" << a << "，b的值为：" << b << endl;
+}
+// 函数的重载要保证函数参数类型不同，不能仅通过参数个数（自动忽略后面多余参数）或者返回值类型不同（编译报错）来实现来实现
+// 当实参类型与形参类型不相同时，编译器会进行隐式类型转换，相容的类型会自动转换为形参的类型，不相容的类型会报错
+// 含默认参数的变量要放在参数列表最后，🈯️默认参数的变量后面应全部有指定默认参数
+// void function_inherit(int a, int b, int c)
+// int function_inherit(int a, int b)
+void function_inherit(float a, float b)
+{
+    cout << "函数二：a的值为：" << a << "，b的值为：" << b << endl;
+}
+
+// 含默认参数的变量要放在参数列表最后，🈯️默认参数的变量后面应全部有指定默认参数
+// 当实参给出对应指定默认参数的形参实际值时，将自动覆盖默认参数，用实参替代
+// 为形式参数赋值必须按照形式参数的顺序从左至右依次赋值，中间不能缺省。
+void function_define_var(int a, int b, int c = -1, int d = -2)
+{
+    cout << "函数三：a的值为：" << a << "，b的值为：" << b << "，c的值为：" << c << "，d的值为：" << d << endl;
+}
+void inherit_invoke()
+{
+    int num1 = 10, num2 = 12, num5 = 13;
+    float num3 = 10.2, num4 = 12.2;
+    function_inherit(num1, num2);
+    function_inherit(num3, num4);
+    int num6 = 100;
+
+    function_define_var(num1, num2, num5, num6);
+    function_define_var(num1, num2, num6);
+}
+// 指针训练题
+void printer_text()
+{
+    //         下标  0  1  2  3  4  5  6  7  8  9
+    int nums[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int *p = nums;
+
+    p = nums;
+    cout << "*p + 6：" << *p + 6 << endl; // 从右至左结合，先将指针向后移动六个单位，然后解引用取值
+
+    p = nums;
+    cout << "p + 5：" << p + 5 << endl; // 指针向后移动5个单位，输出地址
+
+    p = nums;
+    *p += 5;
+    cout << "*p += 5：" << *p << endl; // --> *p=*p+5 ,将指针向后移动五个单位，然后解引用取值，再将值赋给p所指向的位置
+
+    p = nums;
+    cout << "*(p + 6)：" << *(p + 6) << endl; // 同一
+}
+
+
+
 void TextEntrance()
 {
     // function_zhizhen();
