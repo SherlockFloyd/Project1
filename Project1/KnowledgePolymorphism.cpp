@@ -1,4 +1,4 @@
-#pragma warning(disable:4996)  // ºöÂÔ¾¯¸æÌáÐÑ
+#pragma warning(disable:4996)  // å¿½ç•¥è­¦å‘Šæé†’
 
 #include<iostream>
 #include<windows.h>
@@ -8,122 +8,122 @@
 
 using namespace std;
 
-#define PI 3.1415926  // ÔÚÐéº¯Êý×Ü¼ÆËãÔ²Ãæ»ýÊ±Ê¹ÓÃ
+#define PI 3.1415926  // åœ¨è™šå‡½æ•°æ€»è®¡ç®—åœ†é¢ç§¯æ—¶ä½¿ç”¨
 
 /*
-¶àÌ¬ÐÔ
-Ò»ÖÖÓï·¨¸ñÊ½£¬Òþº¬ÁË¶àÖÖ²Ù×÷£¬¼´Í¬Ò»ÖÖº¯Êý»òÕß²Ù×÷·û¸ù¾Ý²ÎÊýÀàÐÍºÍÊýÁ¿²»Í¬ÊµÏÖ²»Í¬µÄ²Ù×÷
-¶àÌ¬ÊµÏÖÁË¡°Ò»ÖÖ½Ó¿Ú£¬¶àÖÖ·½·¨¡±
-¼´½«ÔËËã·ûÖØÔØ£¬½«º¯ÊýÖØÔØ£¬ÊµÏÖ²»Í¬¹¦ÄÜ
+å¤šæ€æ€§
+ä¸€ç§è¯­æ³•æ ¼å¼ï¼Œéšå«äº†å¤šç§æ“ä½œï¼Œå³åŒä¸€ç§å‡½æ•°æˆ–è€…æ“ä½œç¬¦æ ¹æ®å‚æ•°ç±»åž‹å’Œæ•°é‡ä¸åŒå®žçŽ°ä¸åŒçš„æ“ä½œ
+å¤šæ€å®žçŽ°äº†â€œä¸€ç§æŽ¥å£ï¼Œå¤šç§æ–¹æ³•â€
+å³å°†è¿ç®—ç¬¦é‡è½½ï¼Œå°†å‡½æ•°é‡è½½ï¼Œå®žçŽ°ä¸åŒåŠŸèƒ½
 
-¶àÌ¬Á½ÖÖÐÎÊ½£º
-1¡¢±àÒëÊ±¶àÌ¬ÐÔ
-	±àÒëÆ÷¶ÔÔ´³ÌÐò½øÐÐ±àÒëÊ±¾Í¿ÉÒÔÈ·¶¨Ëùµ÷ÓÃµÄÊÇÄÄÒ»¸öº¯Êý
-	±àÒëÊ±¶àÌ¬ÐÔÍ¨¹ýÖØÔØÀ´ÊµÏÖ
-	º¯ÊýÖØÔØ»òÔËËã·ûÖØÔØ
-2¡¢ÔËÐÐÊ±¶àÌ¬ÐÔ£¨¶¯Ì¬°ó¶¨£©
-	ÔÚ³ÌÐòÔËÐÐ¹ý³ÌÖÐ¸ù¾Ý¾ßÌåÇé¿öÀ´È·¶¨µ÷ÓÃµÄÊÇÄÄÒ»¸öº¯Êý
-	ÔËÐÐÊ±¶àÌ¬Í¨¹ýÐéº¯ÊýÀ´ÊµÏÖ£¨º¯Êý·µ»ØÖµÇ°¼Ó virtual£©
+å¤šæ€ä¸¤ç§å½¢å¼ï¼š
+1ã€ç¼–è¯‘æ—¶å¤šæ€æ€§
+	ç¼–è¯‘å™¨å¯¹æºç¨‹åºè¿›è¡Œç¼–è¯‘æ—¶å°±å¯ä»¥ç¡®å®šæ‰€è°ƒç”¨çš„æ˜¯å“ªä¸€ä¸ªå‡½æ•°
+	ç¼–è¯‘æ—¶å¤šæ€æ€§é€šè¿‡é‡è½½æ¥å®žçŽ°
+	å‡½æ•°é‡è½½æˆ–è¿ç®—ç¬¦é‡è½½
+2ã€è¿è¡Œæ—¶å¤šæ€æ€§ï¼ˆåŠ¨æ€ç»‘å®šï¼‰
+	åœ¨ç¨‹åºè¿è¡Œè¿‡ç¨‹ä¸­æ ¹æ®å…·ä½“æƒ…å†µæ¥ç¡®å®šè°ƒç”¨çš„æ˜¯å“ªä¸€ä¸ªå‡½æ•°
+	è¿è¡Œæ—¶å¤šæ€é€šè¿‡è™šå‡½æ•°æ¥å®žçŽ°ï¼ˆå‡½æ•°è¿”å›žå€¼å‰åŠ  virtualï¼‰
 */
 
-// ÅÉÉúÀà¶ÔÏóÌæ»»»ùÀà¶ÔÏó
+// æ´¾ç”Ÿç±»å¯¹è±¡æ›¿æ¢åŸºç±»å¯¹è±¡
 /*
-Ò»¸öÌæ»»Ô­Ôò£º
-	·²ÊÇ»ùÀà¶ÔÏó³öÏÖµÄ³¡ºÏ¶¼¿ÉÒÔÓÃ¹«ÓÐÅÉÉúÀà¶ÔÏóÈ¡´ú
-Èý¸öÌæ»»ÐÎÊ½£º
-	1. ÅÉÉúÀà¶ÔÏó¸ø»ùÀà¶ÔÏó¸³Öµ£¨father f1; son s1; f1 = s1;£©
-	2. ÅÉÉúÀà¶ÔÏó¿ÉÒÔ³õÊ¼»¯»ùÀà¶ÔÏóµÄÒýÓÃ£¨father &f1 = s1;£©
-	3. ¿ÉÒÔÁî»ùÀà¶ÔÏóµÄÖ¸ÕëÖ¸ÏòÅÉÉúÀà¶ÔÏó£¬¼´½«ÅÉÉúÀà¶ÔÏóµÄµØÖ·´«µÝ¸ø»ùÀàÖ¸Õë£¨father* p1; p1 = &s1;£©
+ä¸€ä¸ªæ›¿æ¢åŽŸåˆ™ï¼š
+	å‡¡æ˜¯åŸºç±»å¯¹è±¡å‡ºçŽ°çš„åœºåˆéƒ½å¯ä»¥ç”¨å…¬æœ‰æ´¾ç”Ÿç±»å¯¹è±¡å–ä»£
+ä¸‰ä¸ªæ›¿æ¢å½¢å¼ï¼š
+	1. æ´¾ç”Ÿç±»å¯¹è±¡ç»™åŸºç±»å¯¹è±¡èµ‹å€¼ï¼ˆfather f1; son s1; f1 = s1;ï¼‰
+	2. æ´¾ç”Ÿç±»å¯¹è±¡å¯ä»¥åˆå§‹åŒ–åŸºç±»å¯¹è±¡çš„å¼•ç”¨ï¼ˆfather &f1 = s1;ï¼‰
+	3. å¯ä»¥ä»¤åŸºç±»å¯¹è±¡çš„æŒ‡é’ˆæŒ‡å‘æ´¾ç”Ÿç±»å¯¹è±¡ï¼Œå³å°†æ´¾ç”Ÿç±»å¯¹è±¡çš„åœ°å€ä¼ é€’ç»™åŸºç±»æŒ‡é’ˆï¼ˆfather* p1; p1 = &s1;ï¼‰
 */
 
-// Ðéº¯Êý
+// è™šå‡½æ•°
 /*
-Ðéº¯Êý¶¨Òå£ºÔÚº¯Êý¶¨ÒåµÄÍ·²¿¼ÓÉÏvirtual
-virtual º¯Êý·µ»ØÀàÐÍ º¯ÊýÃû£¨²ÎÊý±í£©
+è™šå‡½æ•°å®šä¹‰ï¼šåœ¨å‡½æ•°å®šä¹‰çš„å¤´éƒ¨åŠ ä¸Švirtual
+virtual å‡½æ•°è¿”å›žç±»åž‹ å‡½æ•°åï¼ˆå‚æ•°è¡¨ï¼‰
 {
-	º¯ÊýÌå
+	å‡½æ•°ä½“
 }
-ÔÚÄ³»ùÀàÖÐÉùÃ÷Îªvirtual²¢ÔÚÒ»¸ö»ò¶à¸öÅÉÉúÀàÖÐ±»ÖØÐÂ¶¨ÒåµÄÍ¬Ãû³ÉÔ±º¯Êý£¬³ÆÎªÐéº¯Êý¡£Ðéº¯Êý±ØÐëÔÚÀàÄÚÉùÃ÷£¬²»ÄÜÔÚÀàÍâÉùÃ÷
+åœ¨æŸåŸºç±»ä¸­å£°æ˜Žä¸ºvirtualå¹¶åœ¨ä¸€ä¸ªæˆ–å¤šä¸ªæ´¾ç”Ÿç±»ä¸­è¢«é‡æ–°å®šä¹‰çš„åŒåæˆå‘˜å‡½æ•°ï¼Œç§°ä¸ºè™šå‡½æ•°ã€‚è™šå‡½æ•°å¿…é¡»åœ¨ç±»å†…å£°æ˜Žï¼Œä¸èƒ½åœ¨ç±»å¤–å£°æ˜Ž
 
-Ðéº¯ÊýµÄÓÃÍ¾£º
-	ÊµÏÖÔËÐÐÊ±µÄ¶àÌ¬ÐÔ£¬¼´Í¨¹ýÖ¸ÏòÅÉÉúÀàµÄ»ùÀàÖ¸Õë£¬·ÃÎÊÅÉÉúÀàÖÐÍ¬Ãû¸²¸Ç³ÉÔ±º¯Êý£¨ÊµÏÖÔËÐÐÊ±¶¯Ì¬°ó¶¨£¬¼´Í¬Ò»Ö¸ÕëÔËÐÐ¹ý³ÌÖÐÖ¸Ïò²»Í¬µÄº¯Êý£©
-×¢Òâ£º
-1¡¢Í¨¹ýÖ¸Õë»òÒýÓÃµ÷ÓÃÐéº¯Êý£¬¿ÉÊµÏÖµ÷ÓÃÅÉÉúÀàº¯Êý£¬ÒÔ¶ÔÏóÃûµ÷ÓÃÔòµ÷ÓÃ»ùÀàµÄÐéº¯Êý
-2¡¢ÔÚÅÉÉúÀàÖÐÖØ¶¨ÒåµÄ»ùÀàÐéº¯ÊýÈÔÎªÐéº¯Êý£¬Í¬Ê±¿ÉÒÔÊ¡ÂÔvirtual¹Ø¼ü×Ö
-3¡¢²»ÄÜ¶¨ÒåÐé¹¹Ôìº¯Êý£¬¿ÉÒÔ¶¨ÒåÐéÎö¹¹º¯Êý
-PS£º
-Èô²»¼Óvirtual¹Ø¼ü×Ö£¬Ôò½«ÅÉÉúÀà¸³¸ø»ùÀàµÄ¶ÔÏó¡¢ÒýÓÃ¡¢Ö¸ÕëÊ±¾ùµ÷ÓÃ»ùÀàµÄ³ÉÔ±±äÁ¿ºÍº¯Êý
+è™šå‡½æ•°çš„ç”¨é€”ï¼š
+	å®žçŽ°è¿è¡Œæ—¶çš„å¤šæ€æ€§ï¼Œå³é€šè¿‡æŒ‡å‘æ´¾ç”Ÿç±»çš„åŸºç±»æŒ‡é’ˆï¼Œè®¿é—®æ´¾ç”Ÿç±»ä¸­åŒåè¦†ç›–æˆå‘˜å‡½æ•°ï¼ˆå®žçŽ°è¿è¡Œæ—¶åŠ¨æ€ç»‘å®šï¼Œå³åŒä¸€æŒ‡é’ˆè¿è¡Œè¿‡ç¨‹ä¸­æŒ‡å‘ä¸åŒçš„å‡½æ•°ï¼‰
+æ³¨æ„ï¼š
+1ã€é€šè¿‡æŒ‡é’ˆæˆ–å¼•ç”¨è°ƒç”¨è™šå‡½æ•°ï¼Œå¯å®žçŽ°è°ƒç”¨æ´¾ç”Ÿç±»å‡½æ•°ï¼Œä»¥å¯¹è±¡åè°ƒç”¨åˆ™è°ƒç”¨åŸºç±»çš„è™šå‡½æ•°
+2ã€åœ¨æ´¾ç”Ÿç±»ä¸­é‡å®šä¹‰çš„åŸºç±»è™šå‡½æ•°ä»ä¸ºè™šå‡½æ•°ï¼ŒåŒæ—¶å¯ä»¥çœç•¥virtualå…³é”®å­—
+3ã€ä¸èƒ½å®šä¹‰è™šæž„é€ å‡½æ•°ï¼Œå¯ä»¥å®šä¹‰è™šæžæž„å‡½æ•°
+PSï¼š
+è‹¥ä¸åŠ virtualå…³é”®å­—ï¼Œåˆ™å°†æ´¾ç”Ÿç±»èµ‹ç»™åŸºç±»çš„å¯¹è±¡ã€å¼•ç”¨ã€æŒ‡é’ˆæ—¶å‡è°ƒç”¨åŸºç±»çš„æˆå‘˜å˜é‡å’Œå‡½æ•°
 */
 
-// »ùÀà£¬ÆÕÍ¨µç»°
+// åŸºç±»ï¼Œæ™®é€šç”µè¯
 class mobile
 {
 public:
 	mobile() {}
-	char mynumber[11]; //»úÖ÷µÄµç»°ºÅÂë
-	virtual void showinfo() //ÏÔÊ¾ÖÆÊ½£¬Ðéº¯Êý£¬ÊµÏÖ¶¯Ì¬°ó¶¨
+	char mynumber[11]; //æœºä¸»çš„ç”µè¯å·ç 
+	virtual void showinfo() //æ˜¾ç¤ºåˆ¶å¼ï¼Œè™šå‡½æ•°ï¼Œå®žçŽ°åŠ¨æ€ç»‘å®š
 	{
-		cout << "The phone is mobile£¬»ùÀà" << endl;
+		cout << "The phone is mobileï¼ŒåŸºç±»" << endl;
 	}
 };
-// ÅÉÉúÀà1£¬GSMÐÍµç»°
+// æ´¾ç”Ÿç±»1ï¼ŒGSMåž‹ç”µè¯
 class mobilegsm :public mobile
 {
 public:
 	mobilegsm() {}
-	virtual void showinfo() //ÏÔÊ¾ÖÆÊ½
+	virtual void showinfo() //æ˜¾ç¤ºåˆ¶å¼
 	{
-		cout << "The phone is mobilegsm£¬ÅÉÉúÀà1" << endl;
+		cout << "The phone is mobilegsmï¼Œæ´¾ç”Ÿç±»1" << endl;
 	}
 };
-// ÅÉÉúÀà2£¬CDMAÐÍµç»°
+// æ´¾ç”Ÿç±»2ï¼ŒCDMAåž‹ç”µè¯
 class mobilecdma :public mobile
 {
 public:
 	mobilecdma() {}
-	virtual void showinfo() //ÏÔÊ¾ÖÆÊ½
+	virtual void showinfo() //æ˜¾ç¤ºåˆ¶å¼
 	{
-		cout << "The phone is mobilecdma£¬ÅÉÉúÀà2" << endl;
+		cout << "The phone is mobilecdmaï¼Œæ´¾ç”Ÿç±»2" << endl;
 	}
 };
-// ¶àÌ¬ÓëÐéº¯Êý²âÊÔº¯Êýµ÷ÓÃ
+// å¤šæ€ä¸Žè™šå‡½æ•°æµ‹è¯•å‡½æ•°è°ƒç”¨
 void mobile_Invoke()
 {
-	mobile m, * p1;  // »ùÀà¶ÔÏóÖ¸Õëp1£¬»ùÀà¶ÔÏóm
+	mobile m, * p1;  // åŸºç±»å¯¹è±¡æŒ‡é’ˆp1ï¼ŒåŸºç±»å¯¹è±¡m
 	mobilegsm gsm;
 	mobilecdma cdma;
-	m = gsm;  // ÓÃgsmÀà¶ÔÏó¸ømobileÀà¶ÔÏó¸³Öµ£¬ÒÔ¶ÔÏóÀàÐÍ¸³Öµ£¬µ÷ÓÃÈÔÎª»ùÀàº¯Êý
+	m = gsm;  // ç”¨gsmç±»å¯¹è±¡ç»™mobileç±»å¯¹è±¡èµ‹å€¼ï¼Œä»¥å¯¹è±¡ç±»åž‹èµ‹å€¼ï¼Œè°ƒç”¨ä»ä¸ºåŸºç±»å‡½æ•°
 	m.showinfo();
-	m = cdma;  // ÓÃcdmaÀà¶ÔÏó¸ømobileÀà¶ÔÏó¸³Öµ
+	m = cdma;  // ç”¨cdmaç±»å¯¹è±¡ç»™mobileç±»å¯¹è±¡èµ‹å€¼
 	m.showinfo();
-	p1 = &gsm;  // ÓÃgsmÀà¶ÔÏóµØÖ·¸ømobileÀà¶ÔÏó¸³Öµ£¬ÒÔÖ¸ÕëÀàÐÍ¸³Öµ£¬ÊµÏÖ¶¯Ì¬µ÷ÓÃÅÉÉúÀàº¯Êý
+	p1 = &gsm;  // ç”¨gsmç±»å¯¹è±¡åœ°å€ç»™mobileç±»å¯¹è±¡èµ‹å€¼ï¼Œä»¥æŒ‡é’ˆç±»åž‹èµ‹å€¼ï¼Œå®žçŽ°åŠ¨æ€è°ƒç”¨æ´¾ç”Ÿç±»å‡½æ•°
 	p1->showinfo();
-	p1 = &cdma;  // ÓÃcdmaÀà¶ÔÏóµØÖ·¸ømobileÀà¶ÔÏó¸³Öµ
+	p1 = &cdma;  // ç”¨cdmaç±»å¯¹è±¡åœ°å€ç»™mobileç±»å¯¹è±¡èµ‹å€¼
 	p1->showinfo();
-	mobile& p4 = gsm;  // ÒÔgsmÀà¶ÔÏó³õÊ¼»¯mobileÀàÒýÓÃ£¬ÒÔÒýÓÃÀàÐÍ¸³Öµ£¬ÊµÏÖ¶¯Ì¬µ÷ÓÃÅÉÉúÀàº¯Êý
+	mobile& p4 = gsm;  // ä»¥gsmç±»å¯¹è±¡åˆå§‹åŒ–mobileç±»å¼•ç”¨ï¼Œä»¥å¼•ç”¨ç±»åž‹èµ‹å€¼ï¼Œå®žçŽ°åŠ¨æ€è°ƒç”¨æ´¾ç”Ÿç±»å‡½æ•°
 	p4.showinfo();
-	mobile& p5 = cdma;  // ÒÔcdmaÀà¶ÔÏó³õÊ¼»¯mobileÀàÒýÓÃ
+	mobile& p5 = cdma;  // ä»¥cdmaç±»å¯¹è±¡åˆå§‹åŒ–mobileç±»å¼•ç”¨
 	p5.showinfo();
 }
 
-// ÐéÎö¹¹º¯Êý
+// è™šæžæž„å‡½æ•°
 /*
 
 */
-// »ùÀà
+// åŸºç±»
 class Base
 {
 public:
 	int x;
 	virtual void f() { cout << "base class\n"; };
 	virtual void show() { cout << "x=" << x << endl; };
-	virtual ~Base() { cout << "destructor base class\n"; }  // ÐéÎö¹¹º¯Êý
-															// ¶¨ÒåÐéÎö¹¹º¯ÊýÊµÏÖÍ¨¹ý»ùÀàÖ¸ÕëÊÍ·ÅÅÉÉúÀà¶ÔÏó¿Õ¼ä
-															// ÔÚ±¾ÀýÖÐ£¬Èô»ùÀà¹¹Ôìº¯Êý²»¼Óvirtual£¬Òò½öÓÐdelete p,pÎª»ùÀàÖ¸Õë£¬¹Êµ±³ÌÐò½áÊøÊ±½öµ÷ÓÃ»ùÀàÎö¹¹º¯Êý£¬²»»áµ÷ÓÃÅÉÉúÀàµÄÎö¹¹º¯Êý£¨ÈÏÎªÃ»ÓÐ´´½¨ÅÉÉúÀàµÄ¶ÔÏó£©£¬
-															// µ«ÔÚµ÷ÓÃº¯ÊýÖÐ´´½¨µÄÊÇÅÉÉúÀàµÄ¶ÔÏó¿Õ¼ä£¬µ¼ÖÂÅÉÉúÀà¶ÔÏó¿Õ¼äÎ´ÄÜÊÍ·Å
-															// ÊµÏÖÐéÎö¹¹º¯ÊýºóÏµÍ³»áµ÷ÓÃÊµ¼ÊÖ¸ÏòµÄ¶ÔÏóÀàÎö¹¹º¯Êý
+	virtual ~Base() { cout << "destructor base class\n"; }  // è™šæžæž„å‡½æ•°
+															// å®šä¹‰è™šæžæž„å‡½æ•°å®žçŽ°é€šè¿‡åŸºç±»æŒ‡é’ˆé‡Šæ”¾æ´¾ç”Ÿç±»å¯¹è±¡ç©ºé—´
+															// åœ¨æœ¬ä¾‹ä¸­ï¼Œè‹¥åŸºç±»æž„é€ å‡½æ•°ä¸åŠ virtualï¼Œå› ä»…æœ‰delete p,pä¸ºåŸºç±»æŒ‡é’ˆï¼Œæ•…å½“ç¨‹åºç»“æŸæ—¶ä»…è°ƒç”¨åŸºç±»æžæž„å‡½æ•°ï¼Œä¸ä¼šè°ƒç”¨æ´¾ç”Ÿç±»çš„æžæž„å‡½æ•°ï¼ˆè®¤ä¸ºæ²¡æœ‰åˆ›å»ºæ´¾ç”Ÿç±»çš„å¯¹è±¡ï¼‰ï¼Œ
+															// ä½†åœ¨è°ƒç”¨å‡½æ•°ä¸­åˆ›å»ºçš„æ˜¯æ´¾ç”Ÿç±»çš„å¯¹è±¡ç©ºé—´ï¼Œå¯¼è‡´æ´¾ç”Ÿç±»å¯¹è±¡ç©ºé—´æœªèƒ½é‡Šæ”¾
+															// å®žçŽ°è™šæžæž„å‡½æ•°åŽç³»ç»Ÿä¼šè°ƒç”¨å®žé™…æŒ‡å‘çš„å¯¹è±¡ç±»æžæž„å‡½æ•°
 };
-// ÅÉÉúÀà
+// æ´¾ç”Ÿç±»
 class Derived : public Base
 {
 public:
@@ -137,43 +137,43 @@ public:
 };
 void Derived_Invoke()
 {
-	Base* p;  // ´´½¨»ùÀàÖ¸Õë
-	p = new Derived;  // ¶¯Ì¬ÉêÇë¶ÔÏó¿Õ¼ä£¬»ùÀàÖ¸ÕëÖ¸ÏòÅÉÉúÀà£¬»ùÀàº¯ÊýÎªÐéº¯Êý£¬ÒÔÏÂµ÷ÓÃµÄº¯Êý¾ùÎª¸ÃÖ¸ÕëÖ¸ÏòµÄÅÉÉúÀàµÄº¯Êý
-	cin >> p->x;  // ÊäÈëx
-	p->f();  // ÊäÈëy
+	Base* p;  // åˆ›å»ºåŸºç±»æŒ‡é’ˆ
+	p = new Derived;  // åŠ¨æ€ç”³è¯·å¯¹è±¡ç©ºé—´ï¼ŒåŸºç±»æŒ‡é’ˆæŒ‡å‘æ´¾ç”Ÿç±»ï¼ŒåŸºç±»å‡½æ•°ä¸ºè™šå‡½æ•°ï¼Œä»¥ä¸‹è°ƒç”¨çš„å‡½æ•°å‡ä¸ºè¯¥æŒ‡é’ˆæŒ‡å‘çš„æ´¾ç”Ÿç±»çš„å‡½æ•°
+	cin >> p->x;  // è¾“å…¥x
+	p->f();  // è¾“å…¥y
 	p->show();
 	delete p;
 
 }
 
-// ³éÏóÀà
+// æŠ½è±¡ç±»
 /*
-ÀàÊÇ¶ÔÏóµÄ¼¯ºÏ£¬ÀàÊÇ´ÓÏàËÆ¶ÔÏóÖÐ³éÈ¡¹²ÐÔ¶øµÃµ½µÄ³éÏóÊý¾ÝÀàÐÍ
-½«²»ÓÃÀ´ÉùÃ÷¶ÔÏó(ÊµÀý»¯)µÄÀà³ÆÎª³éÏóÀà¡£Ö»¹©¼Ì³Ð
+ç±»æ˜¯å¯¹è±¡çš„é›†åˆï¼Œç±»æ˜¯ä»Žç›¸ä¼¼å¯¹è±¡ä¸­æŠ½å–å…±æ€§è€Œå¾—åˆ°çš„æŠ½è±¡æ•°æ®ç±»åž‹
+å°†ä¸ç”¨æ¥å£°æ˜Žå¯¹è±¡(å®žä¾‹åŒ–)çš„ç±»ç§°ä¸ºæŠ½è±¡ç±»ã€‚åªä¾›ç»§æ‰¿
 
-´¿Ðéº¯ÊýµÄ¶¨Òå:
-virtual ·µ»ØÀàÐÍ º¯ÊýÃû£¨²ÎÊý±í£©=0
-´¿ÐéÊýµÄ¾ßÌåÊµÏÖÖ»ÄÜÔÚÅÉÉúÀàÖÐÍê³É
+çº¯è™šå‡½æ•°çš„å®šä¹‰:
+virtual è¿”å›žç±»åž‹ å‡½æ•°åï¼ˆå‚æ•°è¡¨ï¼‰=0
+çº¯è™šæ•°çš„å…·ä½“å®žçŽ°åªèƒ½åœ¨æ´¾ç”Ÿç±»ä¸­å®Œæˆ
 
-³éÏóÀàÓÖ¿ÉÒÔ¶¨Òå³É:ÖÁÉÙ°üº¬Ò»¸ö´¿Ðéº¯ÊýµÄÀà
+æŠ½è±¡ç±»åˆå¯ä»¥å®šä¹‰æˆ:è‡³å°‘åŒ…å«ä¸€ä¸ªçº¯è™šå‡½æ•°çš„ç±»
 
-³éÏóÀàµÄÊ¹ÓÃÒªÇó£º
-1¡¢³éÏóÀà²»ÄÜÊµÀý»¯£¬¼´²»ÉùÃ÷¶ÔÏó
-2¡¢³éÏóÀàÖ»×÷Îª»ùÀà±»¼Ì³Ð
-3¡¢¿ÉÒÔ¶¨Òå³éÏóÀàµÄÖ¸Õë»òÒýÓÃ
+æŠ½è±¡ç±»çš„ä½¿ç”¨è¦æ±‚ï¼š
+1ã€æŠ½è±¡ç±»ä¸èƒ½å®žä¾‹åŒ–ï¼Œå³ä¸å£°æ˜Žå¯¹è±¡
+2ã€æŠ½è±¡ç±»åªä½œä¸ºåŸºç±»è¢«ç»§æ‰¿
+3ã€å¯ä»¥å®šä¹‰æŠ½è±¡ç±»çš„æŒ‡é’ˆæˆ–å¼•ç”¨
 
 */
 
-// ³éÏó»ùÀà
+// æŠ½è±¡åŸºç±»
 class Shape
 {
 public:
-	// ´¿Ðéº¯Êý
-	virtual double area() = 0;  // ¼ÆËãÃæ»ý
-	virtual double circumference() = 0;  // ¼ÆËãÖÜ³¤
+	// çº¯è™šå‡½æ•°
+	virtual double area() = 0;  // è®¡ç®—é¢ç§¯
+	virtual double circumference() = 0;  // è®¡ç®—å‘¨é•¿
 };
-// ÅÉÉúÀà1£¬¾ØÐÎ
-class Rectangl : public Shape  // ¼Ì³Ð³éÏóÀà
+// æ´¾ç”Ÿç±»1ï¼ŒçŸ©å½¢
+class Rectangl : public Shape  // ç»§æ‰¿æŠ½è±¡ç±»
 { 
 	int x,y;
 	int width,hight;
@@ -194,8 +194,8 @@ public:
 		return 2.0 * (width + hight);
 	}
 };
-// ÅÉÉúÀà1£¬Ô²ÐÎ
-class Circle :public Shape  // ¼Ì³Ð³éÏóÀà
+// æ´¾ç”Ÿç±»1ï¼Œåœ†å½¢
+class Circle :public Shape  // ç»§æ‰¿æŠ½è±¡ç±»
 {
 	int x, y;
 	double r;
@@ -211,60 +211,74 @@ public:
 	}
 	virtual double circumference() { return 2.0 * PI * r; }
 };
-// ³éÏóÀà²âÊÔº¯Êýµ÷ÓÃ
+// æŠ½è±¡ç±»æµ‹è¯•å‡½æ•°è°ƒç”¨
 void Shape_Invoke()
 {
 	Rectangl r1(10, 10, 10, 5.0);
 	Circle c1(1, 2, 1);
-	Shape* p1 = &r1;  // ¶¨Òå³éÏóÀàµÄÖ¸Õë¸³Öµ
-	Shape& p2 = c1;  // ¶¨Òå³éÏóÀàµÄÒýÓÃ¸³Öµ
-	cout << "³¤·½ÐÎÃæ»ý£º" << p1->area() << endl;  // Í¨¹ý»ùÀàÖ¸Õëµ÷ÓÃÅÉÉúÀà1µÄ³ÉÔ±º¯Êý
-	cout << "³¤·½ÐÎÖÜ³¤£º" << p1->circumference() << endl;
-	cout << "Ô²Ãæ»ý£º" << p2.area() << endl;  // Í¨¹ý»ùÀàÒýÓÃµ÷ÓÃÅÉÉúÀà2µÄ³ÉÔ±º¯Êý
-	cout << "Ô²ÖÜ³¤£º" << p2.circumference() << endl;
+	Shape* p1 = &r1;  // å®šä¹‰æŠ½è±¡ç±»çš„æŒ‡é’ˆèµ‹å€¼
+	Shape& p2 = c1;  // å®šä¹‰æŠ½è±¡ç±»çš„å¼•ç”¨èµ‹å€¼
+	cout << "é•¿æ–¹å½¢é¢ç§¯ï¼š" << p1->area() << endl;  // é€šè¿‡åŸºç±»æŒ‡é’ˆè°ƒç”¨æ´¾ç”Ÿç±»1çš„æˆå‘˜å‡½æ•°
+	cout << "é•¿æ–¹å½¢å‘¨é•¿ï¼š" << p1->circumference() << endl;
+	cout << "åœ†é¢ç§¯ï¼š" << p2.area() << endl;  // é€šè¿‡åŸºç±»å¼•ç”¨è°ƒç”¨æ´¾ç”Ÿç±»2çš„æˆå‘˜å‡½æ•°
+	cout << "åœ†å‘¨é•¿ï¼š" << p2.circumference() << endl;
 }
 
-// ÔËËã·ûÖØÔØ
+// è¿ç®—ç¬¦é‡è½½
 /*
-ÔËËã·ûÖØÔØÖ¸¸³ÓèÔËËã·ûÐÂµÄ²Ù×÷¹¦ÄÜ£¬Ö÷ÒªÓÃÓÚ¶ÔÀàµÄ¶ÔÏóµÄ²Ù×÷
-ÔËËã·ûÖØÔØ¶¨Òå£º
-<·µ»ØÀàÐÍ> <ÀàÃû>::operator <²Ù×÷·û>(<²ÎÊý±í>)
+è¿ç®—ç¬¦é‡è½½æŒ‡èµ‹äºˆè¿ç®—ç¬¦æ–°çš„æ“ä½œåŠŸèƒ½ï¼Œä¸»è¦ç”¨äºŽå¯¹ç±»çš„å¯¹è±¡çš„æ“ä½œ
+è¿ç®—ç¬¦é‡è½½å®šä¹‰ï¼š
+<è¿”å›žç±»åž‹> <ç±»å>::operator <æ“ä½œç¬¦>(<å‚æ•°è¡¨>)
 {
-	º¯ÊýÌå
+	å‡½æ•°ä½“
 }
-Ë«Ä¿ÔËËã·ûµÄÖØÔØ£ºx + y <--> x.(+)(y)
+åŒç›®è¿ç®—ç¬¦çš„é‡è½½ï¼šx + y <--> x.(+)(y)
 */
 
-// ÀûÓÃÔËËã·ûÖØÔØÊµÏÖ¸´ÊýµÄÔËËãºÍÅÐµÈ
-// ¸´ÊýÀà
+/*
+C++è¿ç®—ç¬¦é‡è½½çš„ç›¸å…³è§„å®šå¦‚ä¸‹ï¼š
+
+ 1.ä¸èƒ½æ”¹å˜è¿ç®—ç¬¦çš„ä¼˜å…ˆçº§ã€‚
+ 2.ä¸èƒ½æ”¹å˜è¿ç®—ç¬¦çš„ç»“åˆæ€§ã€‚
+ 3.é»˜è®¤å‚æ•°ä¸èƒ½å’Œé‡è½½çš„è¿ç®—ç¬¦ä¸€èµ·ä½¿ç”¨ï¼Œä¹Ÿå°±æ˜¯è¯´ï¼Œåœ¨è®¾è®¡è¿ç®—ç¬¦é‡è½½æˆå‘˜å‡½æ•°æ—¶ä¸èƒ½ä½¿ç”¨é»˜è®¤å‡½æ•°ã€‚
+ 4.ä¸èƒ½æ”¹å˜è¿ç®—ç¬¦çš„æ“ä½œæ•°çš„ä¸ªæ•°ã€‚
+ 5.ä¸èƒ½åˆ›å»ºæ–°çš„è¿ç®—ç¬¦ï¼Œåªæœ‰å·²æœ‰è¿ç®—ç¬¦å¯ä»¥è¢«é‡è½½
+ 6.è¿ç®—ç¬¦ä½œç”¨äºŽC++å†…éƒ¨æä¾›çš„æ•°æ®ç±»åž‹æ—¶ï¼ŒåŽŸæ¥å«ä¹‰ä¿æŒä¸å˜
+ 
+ å¹¶ä¸æ˜¯æ‰€æœ‰è¿ç®—ç¬¦éƒ½å¯ä»¥é‡è½½
+
+*/
+
+// åˆ©ç”¨è¿ç®—ç¬¦é‡è½½å®žçŽ°å¤æ•°çš„è¿ç®—å’Œåˆ¤ç­‰
+// å¤æ•°ç±»
 class Complex
 {
 private:
-	double real, imag;  // Êµ²¿£¬Ðé²¿
-	static Complex temp;  // ¾²Ì¬Àà¶ÔÏó£¬Ê¹ÓÃ¾²Ì¬Àà¶ÔÏó¶ø²»ÔÚ³ÉÔ±º¯ÊýÄÚ¶¨ÒåÁÙÊ±¶ÔÏó½ÚÊ¡ÁËµ÷ÓÃ¹¹Ôìº¯ÊýºÍÎö¹¹º¯ÊýµÄÊ±¼ä£¬Ìá¸ßÐ§ÂÊ
+	double real, imag;  // å®žéƒ¨ï¼Œè™šéƒ¨
+	static Complex temp;  // é™æ€ç±»å¯¹è±¡ï¼Œä½¿ç”¨é™æ€ç±»å¯¹è±¡è€Œä¸åœ¨æˆå‘˜å‡½æ•°å†…å®šä¹‰ä¸´æ—¶å¯¹è±¡èŠ‚çœäº†è°ƒç”¨æž„é€ å‡½æ•°å’Œæžæž„å‡½æ•°çš„æ—¶é—´ï¼Œæé«˜æ•ˆçŽ‡
 public:
-	Complex(double r = 0, double i = 0) : real(r), imag(i) { }  // ¹¹Ôìº¯Êý
-	double Real() { return real; }  // »ñµÃÊµ²¿
-	double Imag() { return imag; }  // »ñµÃÐé²¿
+	Complex(double r = 0, double i = 0) : real(r), imag(i) { }  // æž„é€ å‡½æ•°
+	double Real() { return real; }  // èŽ·å¾—å®žéƒ¨
+	double Imag() { return imag; }  // èŽ·å¾—è™šéƒ¨
 	void print();
-	Complex operator +(Complex);  // ÐéÊý¼Ó·¨£¬+ÖØÔØ
-	Complex operator +(double);  // ÐéÊý¼ÓÊµÊý£¬+ÖØÔØ
-	bool operator ==(Complex);  // ÅÐµÈ£¬==ÖØÔØ
-	Complex operator ++();  // µ¥Ä¿ÔËËã·û x++ ÖØÔØ
-	Complex operator ++(int);  // µ¥Ä¿ÔËËã·û ++x ÖØÔØ
-	~Complex() { };  // Îö¹¹º¯Êý
+	Complex operator +(Complex);  // è™šæ•°åŠ æ³•ï¼Œ+é‡è½½
+	Complex operator +(double);  // è™šæ•°åŠ å®žæ•°ï¼Œ+é‡è½½
+	bool operator ==(Complex);  // åˆ¤ç­‰ï¼Œ==é‡è½½
+	Complex operator ++();  // å•ç›®è¿ç®—ç¬¦ x++ é‡è½½
+	Complex operator ++(int);  // å•ç›®è¿ç®—ç¬¦ ++x é‡è½½
+	~Complex() { };  // æžæž„å‡½æ•°
 };
-Complex Complex::temp;  // ¾²Ì¬Àà¶ÔÏó
+Complex Complex::temp;  // é™æ€ç±»å¯¹è±¡
 
-// C++²»¿ÉÒÔÔÚÀàÖÐ¶¨Òå¸ÃÀàµÄ¶ÔÏó
+// C++ä¸å¯ä»¥åœ¨ç±»ä¸­å®šä¹‰è¯¥ç±»çš„å¯¹è±¡
 /*
-´´½¨Ò»¸ö¶ÔÏóA a1£¬a1ÀïÃæÓÖÓÐ¶ÔÏóa£¬Õâ¸ö¶ÔÏóÀïÃæ»¹ÓÐÒ»¸ö¶ÔÏó¡£ÕâÑùÒ»Ö±´´½¨ÏÂÈ¥£¬Ö±µ½ÄÚ´æºÄ¾¡£¬³öÏÖÕ»Òç³ö¡£
+åˆ›å»ºä¸€ä¸ªå¯¹è±¡A a1ï¼Œa1é‡Œé¢åˆæœ‰å¯¹è±¡aï¼Œè¿™ä¸ªå¯¹è±¡é‡Œé¢è¿˜æœ‰ä¸€ä¸ªå¯¹è±¡ã€‚è¿™æ ·ä¸€ç›´åˆ›å»ºä¸‹åŽ»ï¼Œç›´åˆ°å†…å­˜è€—å°½ï¼Œå‡ºçŽ°æ ˆæº¢å‡ºã€‚
 
-¿ÉÒÔÔÚÀàÖÐ¶¨Òå¸ÃÀàµÄ¾²Ì¬¶ÔÏó¡¢¸Ã¶ÔÏóµÄÖ¸Õë»òÕßÒýÓÃ¡£
-	ÒòÎª¾²Ì¬µÄ³ÉÔ±²»ÔÚ¶ÔÏóµÄÄÚ²¿£¬ÔÚdataÇø£¬±»Õâ¸öÀà¹²Ïí¡£ËùÒÔ²»»á³öÏÖµÝ¹é´´½¨¡£
+å¯ä»¥åœ¨ç±»ä¸­å®šä¹‰è¯¥ç±»çš„é™æ€å¯¹è±¡ã€è¯¥å¯¹è±¡çš„æŒ‡é’ˆæˆ–è€…å¼•ç”¨ã€‚
+	å› ä¸ºé™æ€çš„æˆå‘˜ä¸åœ¨å¯¹è±¡çš„å†…éƒ¨ï¼Œåœ¨dataåŒºï¼Œè¢«è¿™ä¸ªç±»å…±äº«ã€‚æ‰€ä»¥ä¸ä¼šå‡ºçŽ°é€’å½’åˆ›å»ºã€‚
 */
 
-// ÖØÔØÔËËã·û £«£¬Á½±ßÊÇÐéÊý¶ÔÏó
+// é‡è½½è¿ç®—ç¬¦ ï¼‹ï¼Œä¸¤è¾¹æ˜¯è™šæ•°å¯¹è±¡
 Complex Complex::operator + (Complex c) 
 {
 	//Complex temp;
@@ -272,7 +286,7 @@ Complex Complex::operator + (Complex c)
 	temp.imag = imag + c.imag;
 	return temp;
 }
-// ÖØÔØÔËËã·û£«£¬×ó±ßÊÇÐéÊý¶ÔÏó£¬ÓÒ±ßÊÇË«¾«¶ÈÊý
+// é‡è½½è¿ç®—ç¬¦ï¼‹ï¼Œå·¦è¾¹æ˜¯è™šæ•°å¯¹è±¡ï¼Œå³è¾¹æ˜¯åŒç²¾åº¦æ•°
 Complex Complex::operator + (double d) 
 {
 	//Complex temp;
@@ -280,7 +294,7 @@ Complex Complex::operator + (double d)
 	temp.imag = imag;
 	return temp;
 }
-// ÖØÔØÔËËã·û==
+// é‡è½½è¿ç®—ç¬¦==
 bool Complex::operator ==(Complex c) 
 {
 	if (real == c.real && imag == c.imag)
@@ -288,80 +302,80 @@ bool Complex::operator ==(Complex c)
 	else
 		return false;
 }
-// Ç°ÖÃ++ÔËËã·û¶¨Òå£¬ÏÈ+1ºóÊä³ö
+// å‰ç½®++è¿ç®—ç¬¦å®šä¹‰ï¼Œå…ˆ+1åŽè¾“å‡º
 Complex Complex::operator ++ ()
 {
 	real += 1;
 	return *this;
 }
-// ºóÖÃ++ÔËËã·û¶¨Òå£¬ÏÈÊä³öºó+1
+// åŽç½®++è¿ç®—ç¬¦å®šä¹‰ï¼Œå…ˆè¾“å‡ºåŽ+1
 Complex Complex::operator ++ (int)
 {
 	//Complex 
 	temp = *this;
-	++real;  // ÀûÓÃÇ°ÖÃÊµÏÖºóÖÃ£¬¼õÉÙ´úÂëÖØ¸´
+	++real;  // åˆ©ç”¨å‰ç½®å®žçŽ°åŽç½®ï¼Œå‡å°‘ä»£ç é‡å¤
 	return temp;
 }
 /*
-µ¥Ä¿ÔËËã·ûÖØÔØÖªÊ¶µã£º
+å•ç›®è¿ç®—ç¬¦é‡è½½çŸ¥è¯†ç‚¹ï¼š
 
-1¡¢ÐÎ²ÎµÄÇø±ð¼°Ô­Òò
-	Ç°ÖÃ++Ã»ÓÐÐÎ²Î£¬¶øºóÖÃ++ÓÐÒ»¸öintÐÎ²Î£¬µ«ÊÇ¸ÃÐÎ²ÎÒ²Ã»ÓÐ±»ÓÃµ½¡£ÆäÄ¿µÄÖ»ÊÇÎªÁËÈÆ¹ýÓï·¨µÄÏÞÖÆ¡£
-	Ç°ÖÃ++ÓëºóÖÃ++µÄ²Ù×÷·ûÖØÔØº¯Êý£¬º¯ÊýÔ­ÐÍ±ØÐë²»Í¬¡£·ñÔò¾ÍÎ¥·´ÁË¡°ÖØÔØº¯Êý±ØÐëÓµÓÐ²»Í¬µÄº¯ÊýÔ­ÐÍ¡±µÄÓï·¨¹æ¶¨¡£
-	ËäÈ»Ç°ÖÃ++ÓëºóÖÃ++µÄ·µ»ØÀàÐÍ²»Í¬£¬µ«ÊÇ·µ»ØÀàÐÍ²»ÊôÓÚº¯ÊýÔ­ÐÍ¡£ÎªÁËÈÆ¹ýÓï·¨ÏÞÖÆ£¬Ö»ºÃ¸øºóÖÃ++Ôö¼ÓÁËÒ»¸öintÐÎ²Î¡£
-2¡¢´úÂëÊµÏÖµÄÇø±ð
-	Ç°ÖÃ++µÄÊµÏÖ±È½Ï¼òµ¥£¬×ÔÔöÖ®ºó£¬½«*this·µ»Ø¼´¿É¡£ÐèÒª×¢ÒâµÄÊÇ£¬Ò»¶¨Òª·µ»Ø*this¡£
-	ºóÖÃ++µÄÊµÏÖÉÔÎ¢Âé·³Ò»Ð©¡£ÒòÎªÒª·µ»Ø×ÔÔöÖ®Ç°µÄ¶ÔÏó£¬ËùÒÔÏÈ½«¶ÔÏó¿½±´Ò»·Ý£¬ÔÙ½øÐÐ×ÔÔö£¬×îºó·µ»ØÄÇ¸ö¿½±´¡£
-3¡¢Ð§ÂÊµÄÇø±ð
-	Èç¹û²»ÐèÒª·µ»Ø×ÔÔöÖ®Ç°µÄÖµ£¬ÄÇÃ´Ç°ÖÃ++ºÍºóÖÃ++µÄ¼ÆËãÐ§¹û¶¼Ò»Ñù¡£µ«ÊÇ£¬ÎÒÃÇÈÔÈ»Ó¦¸ÃÓÅÏÈÊ¹ÓÃÇ°ÖÃ++£¬ÓÈÆäÊÇ¶ÔÓÚÓÃ»§×Ô¶¨ÒåÀàÐÍµÄ×ÔÔö²Ù×÷¡£
-	Ç°ÖÃ++µÄÐ§ÂÊ¸ü¸ß£¬ÀíÓÉÊÇ£ººóÖÃ++»áÉú³ÉÁÙÊ±¶ÔÏó¡£
-	ºÜÃ÷ÏÔ£¬tmpÊÇÒ»¸öÁÙÊ±¶ÔÏó£¬»áÔì³ÉÒ»´Î¹¹Ôìº¯ÊýºÍÒ»´ÎÎö¹¹º¯ÊýµÄ¶îÍâ¿ªÏú¡£ËäÈ»£¬±àÒëÆ÷ÔÚÄ³Ð©Çé¿öÏÂ¿ÉÒÔÓÅ»¯µôÕâÐ©¿ªÏú¡£µ«ÊÇ£¬ÎÒÃÇ×îºÃ²»ÒªÒÀÀµ±àÒëÆ÷µÄÐÐÎª¡£
-	ËùÒÔ£¬ÔÚ·ÇÄÚÖÃÀàÐÍµÄÊ±ºò£¬¾¡Á¿Ê¹ÓÃÇ°ÖÃ++£¬ÒòÎªÐ§ÂÊ¸ß£¨ºóÖÃ×ÔÔö£¬Ð§ÂÊµÍ£©
+1ã€å½¢å‚çš„åŒºåˆ«åŠåŽŸå› 
+	å‰ç½®++æ²¡æœ‰å½¢å‚ï¼Œè€ŒåŽç½®++æœ‰ä¸€ä¸ªintå½¢å‚ï¼Œä½†æ˜¯è¯¥å½¢å‚ä¹Ÿæ²¡æœ‰è¢«ç”¨åˆ°ã€‚å…¶ç›®çš„åªæ˜¯ä¸ºäº†ç»•è¿‡è¯­æ³•çš„é™åˆ¶ã€‚
+	å‰ç½®++ä¸ŽåŽç½®++çš„æ“ä½œç¬¦é‡è½½å‡½æ•°ï¼Œå‡½æ•°åŽŸåž‹å¿…é¡»ä¸åŒã€‚å¦åˆ™å°±è¿åäº†â€œé‡è½½å‡½æ•°å¿…é¡»æ‹¥æœ‰ä¸åŒçš„å‡½æ•°åŽŸåž‹â€çš„è¯­æ³•è§„å®šã€‚
+	è™½ç„¶å‰ç½®++ä¸ŽåŽç½®++çš„è¿”å›žç±»åž‹ä¸åŒï¼Œä½†æ˜¯è¿”å›žç±»åž‹ä¸å±žäºŽå‡½æ•°åŽŸåž‹ã€‚ä¸ºäº†ç»•è¿‡è¯­æ³•é™åˆ¶ï¼Œåªå¥½ç»™åŽç½®++å¢žåŠ äº†ä¸€ä¸ªintå½¢å‚ã€‚
+2ã€ä»£ç å®žçŽ°çš„åŒºåˆ«
+	å‰ç½®++çš„å®žçŽ°æ¯”è¾ƒç®€å•ï¼Œè‡ªå¢žä¹‹åŽï¼Œå°†*thisè¿”å›žå³å¯ã€‚éœ€è¦æ³¨æ„çš„æ˜¯ï¼Œä¸€å®šè¦è¿”å›ž*thisã€‚
+	åŽç½®++çš„å®žçŽ°ç¨å¾®éº»çƒ¦ä¸€äº›ã€‚å› ä¸ºè¦è¿”å›žè‡ªå¢žä¹‹å‰çš„å¯¹è±¡ï¼Œæ‰€ä»¥å…ˆå°†å¯¹è±¡æ‹·è´ä¸€ä»½ï¼Œå†è¿›è¡Œè‡ªå¢žï¼Œæœ€åŽè¿”å›žé‚£ä¸ªæ‹·è´ã€‚
+3ã€æ•ˆçŽ‡çš„åŒºåˆ«
+	å¦‚æžœä¸éœ€è¦è¿”å›žè‡ªå¢žä¹‹å‰çš„å€¼ï¼Œé‚£ä¹ˆå‰ç½®++å’ŒåŽç½®++çš„è®¡ç®—æ•ˆæžœéƒ½ä¸€æ ·ã€‚ä½†æ˜¯ï¼Œæˆ‘ä»¬ä»ç„¶åº”è¯¥ä¼˜å…ˆä½¿ç”¨å‰ç½®++ï¼Œå°¤å…¶æ˜¯å¯¹äºŽç”¨æˆ·è‡ªå®šä¹‰ç±»åž‹çš„è‡ªå¢žæ“ä½œã€‚
+	å‰ç½®++çš„æ•ˆçŽ‡æ›´é«˜ï¼Œç†ç”±æ˜¯ï¼šåŽç½®++ä¼šç”Ÿæˆä¸´æ—¶å¯¹è±¡ã€‚
+	å¾ˆæ˜Žæ˜¾ï¼Œtmpæ˜¯ä¸€ä¸ªä¸´æ—¶å¯¹è±¡ï¼Œä¼šé€ æˆä¸€æ¬¡æž„é€ å‡½æ•°å’Œä¸€æ¬¡æžæž„å‡½æ•°çš„é¢å¤–å¼€é”€ã€‚è™½ç„¶ï¼Œç¼–è¯‘å™¨åœ¨æŸäº›æƒ…å†µä¸‹å¯ä»¥ä¼˜åŒ–æŽ‰è¿™äº›å¼€é”€ã€‚ä½†æ˜¯ï¼Œæˆ‘ä»¬æœ€å¥½ä¸è¦ä¾èµ–ç¼–è¯‘å™¨çš„è¡Œä¸ºã€‚
+	æ‰€ä»¥ï¼Œåœ¨éžå†…ç½®ç±»åž‹çš„æ—¶å€™ï¼Œå°½é‡ä½¿ç”¨å‰ç½®++ï¼Œå› ä¸ºæ•ˆçŽ‡é«˜ï¼ˆåŽç½®è‡ªå¢žï¼Œæ•ˆçŽ‡ä½Žï¼‰
 */
 
 
-// ´òÓ¡Êä³ö½á¹û
+// æ‰“å°è¾“å‡ºç»“æžœ
 void Complex::print()
 {
 	cout << real << "+" << imag << "i";
 	cout << endl;
 }
-// ÔËËã·ûÖØÔØ²âÊÔº¯Êýµ÷ÓÃ
+// è¿ç®—ç¬¦é‡è½½æµ‹è¯•å‡½æ•°è°ƒç”¨
 void Complex_Invoke()
 {
-	Complex c1(3, 4), c2(5, 6), c3;  // ´´½¨Èý¸ö¸´Êý¶ÔÏó
+	Complex c1(3, 4), c2(5, 6), c3;  // åˆ›å»ºä¸‰ä¸ªå¤æ•°å¯¹è±¡
 	cout << "C1 = ";
 	c1.print();
 	cout << "C2 = ";
 	c2.print();
-	c3 = c1 + c2;  // Ê¹ÓÃÖØÔØÔËËã·û + ÊµÏÖÁ½¸öÐéÊýµÄ¼Ó·¨
+	c3 = c1 + c2;  // ä½¿ç”¨é‡è½½è¿ç®—ç¬¦ + å®žçŽ°ä¸¤ä¸ªè™šæ•°çš„åŠ æ³•
 	cout << "C3 = ";
 	c3.print();
-	c3 = c3 + 6.5;  // Ê¹ÓÃÖØÔØÔËËã·û + ÊµÏÖÐéÊýºÍÊµÊýµÄ¼Ó·¨
+	c3 = c3 + 6.5;  // ä½¿ç”¨é‡è½½è¿ç®—ç¬¦ + å®žçŽ°è™šæ•°å’Œå®žæ•°çš„åŠ æ³•
 	cout << "C3 + 6.5 = ";
 	c3.print();
-	if (c1 == c2)  // Ê¹ÓÃÖØÔØÔËËã·û == ÅÐÁ½¸öÐéÊýÊÇ·ñÏàµÈ
-		cout << "Á½¸ö¸´ÊýÏàµÈ" << endl;
+	if (c1 == c2)  // ä½¿ç”¨é‡è½½è¿ç®—ç¬¦ == åˆ¤ä¸¤ä¸ªè™šæ•°æ˜¯å¦ç›¸ç­‰
+		cout << "ä¸¤ä¸ªå¤æ•°ç›¸ç­‰" << endl;
 	else
-		cout << "Á½¸ö¸´Êý²»ÏàµÈ" << endl;
+		cout << "ä¸¤ä¸ªå¤æ•°ä¸ç›¸ç­‰" << endl;
 
-	c3 = c1++;  // ºóÖÃ
+	c3 = c1++;  // åŽç½®
 	c3.print();
-	c3 = ++c1;  // Ç°ÖÃ
+	c3 = ++c1;  // å‰ç½®
 	c3.print();
 }
- // Éî¿½±´ÓëÇ³¿½±´
+ // æ·±æ‹·è´ä¸Žæµ…æ‹·è´
 /*
-Ç³¿½±´£¨shallowcopy£©
-	Ö»¸´ÖÆÖ±½Ó³ÉÔ±±äÁ¿µÄÖµ
-Éî¿½±´£¨deepcopy£©
-	Í¬Ê±¸´ÖÆ×ÊÔ´ £¨ÈçÖ¸ÕëÖ¸ÏòµÄ¿Õ¼ä£©
-Ç³½Ó±´µÄÔËËã
-	¸³ÖµÔËËã·û£¨=£©¡¢ÏµÍ³Ä¬ÈÏµÄ¿½±´¹¹Ôìº¯ÊýÊµÏÖµÄ¶¼ÊÇÇ³¿½±´
-ÊµÏÖÉî½Ó±´
-	×Ô¶¨ÒåÒ»¸ö³ÉÔ±º¯Êý
-	ÖØÔØ¿½±´¹¹Ôìº¯Êý£¨Ò²½Ð¸´ÖÆ¹¹Ôìº¯Êý£©
-	ÖØÔØ¸³ÖµÔËËã·û
+æµ…æ‹·è´ï¼ˆshallowcopyï¼‰
+	åªå¤åˆ¶ç›´æŽ¥æˆå‘˜å˜é‡çš„å€¼
+æ·±æ‹·è´ï¼ˆdeepcopyï¼‰
+	åŒæ—¶å¤åˆ¶èµ„æº ï¼ˆå¦‚æŒ‡é’ˆæŒ‡å‘çš„ç©ºé—´ï¼‰
+æµ…æŽ¥è´çš„è¿ç®—
+	èµ‹å€¼è¿ç®—ç¬¦ï¼ˆ=ï¼‰ã€ç³»ç»Ÿé»˜è®¤çš„æ‹·è´æž„é€ å‡½æ•°å®žçŽ°çš„éƒ½æ˜¯æµ…æ‹·è´
+å®žçŽ°æ·±æŽ¥è´
+	è‡ªå®šä¹‰ä¸€ä¸ªæˆå‘˜å‡½æ•°
+	é‡è½½æ‹·è´æž„é€ å‡½æ•°ï¼ˆä¹Ÿå«å¤åˆ¶æž„é€ å‡½æ•°ï¼‰
+	é‡è½½èµ‹å€¼è¿ç®—ç¬¦
 */
 
 void PolymorphismEntrance()
