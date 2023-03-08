@@ -255,7 +255,121 @@ void printer_text()
     cout << "*(p + 6)：" << *(p + 6) << endl; // 同一
 }
 
+// 快速排序
+void quicksort(int nums[], int left, int right)
+{
+    if (left >= right)
+        return;
+    int pivot_index = left + (right - left) / 2;
+    int pivot_value = nums[pivot_index];
+    int i = left, j = right;
+    while (i <= j)
+    {
+        while (nums[i] < pivot_value)
+            i++;
+        while (nums[j] > pivot_value)
+            j--;
+        if (i <= j)
+        {
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+            i++;
+            j--;
+        }
+    }
+    quicksort(nums, left, j);
+    quicksort(nums, i, right);
+}
 
+// 查找两个数组中的公共元素，以第一个数组顺序为准
+void findpublicelement()
+{
+    int n1, n2, k = 0;
+    int nums1[] = {1, 2, 3, 4, 2, 5, 6, 2, 6, 7, 8};
+    int nums2[] = {11, 2, 15, 1, 20, 6, 2, 7};
+    int pubelem[20];
+
+    n1 = sizeof(nums1) / sizeof(int);
+    n2 = sizeof(nums2) / sizeof(int);
+    for (int i = 0; i < n1; i++)
+    {
+        for (int j = 0; j < n2; j++)
+        {
+            if (nums1[i] == nums2[j])
+            {
+                pubelem[k++] = nums1[i];
+                break;
+            }
+        }
+    }
+    // 去除重复元素
+    // 法一：O(n3)，暴力求解
+    /*
+    for (int i = 0; i < k; i++)
+    {
+        for (int j = i + 1; j < k; j++)
+        {
+            if (pubelem[i] == pubelem[j])
+            {
+                for (int h = j; h < k; h++)
+                    pubelem[h] = pubelem[h + 1];
+                k--;
+                j--;
+            }
+        }
+    }
+    */
+
+    // 法二：O(n2)，以空间换时间，设置标记数组
+    /*
+    bool *flag = new bool[k];
+    int a = 0, b = 0, count = 0;
+    for (int i = 0; i < k; i++)
+        flag[i] = true;
+    for (int i = 0; i < k; i++)
+    {
+        for (int j = i + 1; j < k; j++)
+        {
+            if (pubelem[j] == pubelem[i] && flag[i] != false)
+                flag[i] = false;
+        }
+    }
+    for (int i = 0; i < k; i++)
+    {
+        if (flag[i])
+            a++;
+        b++;
+        pubelem[a] = pubelem[b];
+    }
+    k = a;
+    */
+
+    // 法三：O(nlogn)，利用快排先排序，后用双指针法去重
+    quicksort(pubelem, 0, k);
+    int i = 0;
+    for (int j = 1; j < k; j++)
+    {
+        if (pubelem[i] != pubelem[j])
+            i++;
+        pubelem[i] = pubelem[j];
+    }
+    k = i + 1;
+
+    cout << "数组一的内容为：" << endl;
+    for (int i = 0; i < n1; i++)
+        cout << nums1[i] << " ";
+    cout << endl;
+    cout << "数组二的内容为：" << endl;
+    for (int i = 0; i < n2; i++)
+        cout << nums2[i] << " ";
+    cout << endl;
+
+    cout << "两数组的公共元素为：" << endl;
+    for (int i = 0; i < k; i++)
+        cout << pubelem[i] << " ";
+    cout << endl;
+}
 
 void TextEntrance()
 {
