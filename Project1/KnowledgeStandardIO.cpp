@@ -233,6 +233,16 @@ void ControlSymbols_output()
 	cout << endl;
 }
 
+// 输出流格式控制符
+/*
+setiosflags中多个ios字段可以用 ｜ 分割，设置精度直接截断，不四舍五入
+*/
+void fun_output()
+{
+    float num = 123.4567;
+    cout << "num=" << setiosflags(ios::fixed | ios::right) << setprecision(2) << num << endl;
+}
+
 // 文件读写
 /*
 文件分类
