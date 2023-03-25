@@ -558,6 +558,7 @@ void test21()
 
     // 存储在动态数组中，堆区
     char *str2;
+    // cin>>str2;  //运行出错，指针未初始化，可能指向无效内存，在无效内存中赋值导致程序崩溃
     // strcpy(str2, "hello kitty"); // 运行出错，为给该指针分配内存，不能够进行赋值（strcpy的第一个参数要具有具体的存储空间），但可以用 = 将该指针指向一个内存空间，“str2 = "hello kitty!"”
     str2 = new char[20];
     // char *str2 = (char *)malloc(20*sizeof(char));
