@@ -515,6 +515,32 @@ void QuickSortInput()  // 快排输入
     for (int i = 0; i < n; i++)
         cout << A[i] << "\t";
 }
+// 改进型快速排序
+void quicksort(int nums[],int left,int right)
+{
+	if(left>=right)
+		return;
+	int a=left,b=right,mid_index=(left+right)/2;
+	while(a<=b)
+	{
+		while(nums[a]<nums[mid_index])
+			a++;
+		while(nums[b]>nums[mid_index])
+			b--;
+		if(a<b)
+		{
+			int temp=nums[a];
+			nums[a]=nums[b];
+			nums[b]=temp;
+			a++;
+			b--;
+		}
+	}
+	quicksort(nums,left,b);
+	quicksort(nums,i,right);
+}
+
+
 
 //链表的遍历、增加、删除、修改
 //链表节点定义
